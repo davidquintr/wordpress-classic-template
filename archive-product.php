@@ -2,14 +2,12 @@
     get_header();
 ?>
 
-<article class="">
-
-    <ul class="flex gap-2">
+<article class="alignwide ">
+    <ul class="products-wrapper">
         <?php
-            // Define query arguments to get WooCommerce products
             $args = array(
                 'post_type' => 'product',
-                'posts_per_page' => 10, // Change this number to control the number of products displayed
+                'posts_per_page' => 10,
             );
 
             // The Query
@@ -19,17 +17,14 @@
             if ($loop->have_posts()) {
                 while ($loop->have_posts()) {
                     $loop->the_post();
-                    wc_get_template_part('content', 'product');
+                    get_template_part('template-parts/content', 'product');
                 }
             } else {
                 echo __('No products found');
             }
-
-            // Restore original Post Data
             wp_reset_postdata();
         ?>
     </ul>
-
 </article>
 
 <?php

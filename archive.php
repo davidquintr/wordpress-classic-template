@@ -3,7 +3,6 @@
 ?>
 
  <article class="">
-
     <ul class="flex gap-2">
         <?php
             if(have_posts()){
