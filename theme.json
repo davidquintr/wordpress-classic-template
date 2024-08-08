@@ -1,0 +1,147 @@
+{
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "640px",
+			"wideSize": "1536px"
+		},
+		"spacing": {
+			"units": [ "%", "px", "em", "rem", "vh", "vw" ]
+		},
+		"color": {
+			"defaultPalette": false,
+			"palette": [
+				{
+					"color": "#f05d26",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#a53f20",
+					"name": "Primary Opaque",
+					"slug": "primary-opaque"
+				},
+				{
+					"color": "#eaeaea",
+					"name": "Gray 100",
+					"slug": "gray-100"
+				},
+				{
+					"color": "#9E9E9E",
+					"name": "Gray 200",
+					"slug": "gray-200"
+				},
+				{	
+					"color": "#282828",
+					"name": "Gray 300",
+					"slug": "gray-300"
+				},
+				{
+					"color": "#000",
+					"name": "Black",
+					"slug": "black"
+				},
+				{
+					"color": "#fff",
+					"name": "White",
+					"slug": "white"
+				}
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "Century Gothic, sans-serif",
+					"name": "Century Gothic",
+					"slug": "century-gothic",
+					"fontFace": [
+						{
+							"fontFamily": "Century Gothic",
+							"fontWeight": "800",
+							"fontStyle": "bold",
+							"fontStretch": "normal",
+							"src": [ "file:./assets/fonts/centurygothic_bold.ttf" ]
+						},
+						{
+							"fontFamily": "Century Gothic",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": [ "file:./assets/fonts/centurygothic.ttf" ]
+						}
+					]
+				},
+				{
+					"fontFamily": "TwCenMTStd, sans-serif",
+					"name": "Tw Cen MT Std",
+					"slug": "tw-cent-mt-std",
+					"fontFace": [
+						{
+							"fontFamily": "TwCenMTStd",
+							"fontWeight": "800",
+							"fontStyle": "bold",
+							"fontStretch": "normal",
+							"src": [ "file:./assets/fonts/TwCenMTStdBold.otf" ]
+						},
+						{
+							"fontFamily": "TwCenMTStd",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontStretch": "normal",
+							"src": [ "file:./assets/fonts/TwCenMTStd.otf" ]
+						}
+					]
+				}	
+			],
+			"fontSizes": [
+				{
+				  "name": "Small",
+				  "size": "clamp(10px, 1.2vw, 12px)",
+				  "slug": "small"
+				},
+				{
+				  "name": "Regular",
+				  "size": "clamp(14px, 1.5vw, 16px)",
+				  "slug": "regular"
+				},
+				{
+				  "name": "Large",
+				  "size": "clamp(18px, 2vw, 24px)",
+				  "slug": "large"
+				},
+				{
+				  "name": "XL",
+				  "size": "clamp(20px, 2.5vw, 32px)",
+				  "slug": "x-large"
+				},
+				{
+				  "name": "2XL",
+				  "size": "clamp(24px, 3vw, 36px)",
+				  "slug": "xx-large"
+				},
+				{
+				  "name": "3XL",
+				  "size": "clamp(40px, 5vw, 65px)",
+				  "slug": "xxx-large"
+				},
+				{
+				  "name": "4XL",
+				  "size": "clamp(60px, 7vw, 96px)",
+				  "slug": "iv-large"
+				},
+				{
+				  "name": "5XL",
+				  "size": "clamp(70px, 8vw, 102px)",
+				  "slug": "v-large"
+				},
+				{
+				  "name": "6XL",
+				  "size": "clamp(90px, 8vw, 122px)",
+				  "slug": "v-large"
+				}
+			  ]
+		},
+		"useRootPaddingAwareAlignments": true
+	},
+	"version": 2
+}
