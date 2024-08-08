@@ -7,6 +7,9 @@ import "../styles/patterns/separator-high.css";
 import "../styles/patterns/separator-tiny.css"
 import "../styles/template-part/product-item.css"
 import "../styles/pages/shop.css"
+import "../styles/pages/product-cat.css"
 
 /* Scripts */
 import "./navigation"
+import "./search-header"
+import "./scroll"

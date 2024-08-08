@@ -1,6 +1,5 @@
-const headerElements : HTMLUListElement | null = document.querySelector("ul.menu-items");
-const navigationContainer : HTMLElement | null = document.querySelector(".navigation-elements");
-const menuBar : HTMLElement | null = document.querySelector(".menu-bar");
+const headerElements : HTMLUListElement | null = document.querySelector("ul.menu-items.header");
+const navigationButton : HTMLButtonElement | null = document.querySelector(".header-button.navigation");
 
 document.addEventListener("DOMContentLoaded", () => {
     const navigationElements : NodeList | undefined = headerElements?.childNodes
@@ -12,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    if(!menuBar) return;
-    menuBar?.addEventListener("click", ()=> {
-        navigationContainer?.classList.toggle("active")
-        document.body.style.overflow = navigationContainer?.classList.contains("active") ? "hidden" : ""
+    navigationButton?.addEventListener("click", () => {
+        headerElements?.classList.toggle("active")
     })
+
 })
 

@@ -25,7 +25,7 @@ function improvedtheme_register_styles(){
 
     $uri =  get_template_directory_uri();
     wp_enqueue_style('styles-basic', $uri . '/style.css', array(), '1.0', 'all');
-    wp_enqueue_style('gabsters-styles', $uri . '/dist/styles.css', array(), '1.0', 'all');
+    //wp_enqueue_style('gabsters-styles', $uri . '/dist/styles.css', array(), '1.0', 'all');
     wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
 }
 add_action( 'wp_enqueue_scripts', 'improvedtheme_register_styles');

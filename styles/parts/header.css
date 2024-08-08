@@ -1,8 +1,18 @@
+:root {
+    --header-height: 120px;
+}
+
 .page-header {
+    transition: border-bottom-color 0.2s;
     background-color: var(--wp--preset--color--white);
     position: sticky;
     top: 0;
     z-index: 20;
+    border-bottom: 1px solid var(--wp--preset--color--white);
+}
+
+.page-header.on-scroll {
+    border-bottom-color: var(--wp--preset--color--gray-100);
 }
 
 .page-header > .inner-content {
@@ -12,11 +22,11 @@
     margin-inline: auto;
     display: flex;
     justify-content: space-between;
-    min-height: 120px;
+    min-height: var(--header-height);
     align-items: center;
 }
 
-.page-header > .inner-content .menu > ul,  .page-header > .inner-content > ul{
+.page-header .menu-items{
     margin: 0;
     padding: 0;
     display: flex;
@@ -24,16 +34,16 @@
     flex-wrap: wrap;
 }
 
-.page-header > .inner-content .menu > ul li, 
-.page-header > .inner-content > ul li {
+.page-header .menu-items li, 
+.page-header .menu-items li {
     position: relative;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.page-header > .inner-content .menu > ul li > a, 
-.page-header > .inner-content > ul li > a {
+.page-header .menu-items li > a, 
+.page-header .menu-items li > a {
     transition: color 0.2s;
     color: var(--wp--preset--color--black);
     font-size: var(--wp--preset--font-size--x-large);
@@ -41,14 +51,12 @@
     text-decoration: none;
 }
 
-.page-header > .inner-content .menu > ul li:hover > a, 
-.page-header > .inner-content > ul li:hover > a,
-.page-header > .inner-content > ul li.current-page > a{
+.page-header .menu-items li:hover > a,
+.page-header .menu-items li.current-page > a{
     color: var(--wp--preset--color--primary) ;
 }
 
-.page-header > .inner-content .menu > ul li::after,
-.page-header > .inner-content > ul li::after {
+.page-header .menu-items li::after {
     transform-origin: center;
     transition: all 0.2s;
     content: "";
@@ -62,13 +70,68 @@
     transform: translate(-50%);
 }
 
-.page-header > .inner-content .menu > ul li:hover::after,
-.page-header > .inner-content > ul li:hover::after,
-.page-header > .inner-content > ul li.current-page::after {
+.page-header .menu-items li:hover::after,
+.page-header .menu-items li.current-page::after {
     width: 100%;
 }
 
+.header-button.navigation > i{
+    font-size: xx-large;
+}
+
+.header-button.navigation {
+    display: none;
+}
+
+.header-button.navigation:active {
+    transform: scaleX(0.9);
+}
+
+@media screen and (max-width: 1024px) {
+    :root {
+        --header-height: 72px;
+    }
+
+    .header-button.navigation {
+        display: block;
+    }
+
+    .page-header > .inner-content {
+        position: relative;
+    }
+
+    .menu-items:not(.active) {
+        transform: translateY(calc(-100% - var(--header-height))) !important;
+        pointer-events: none;
+    }
+
+    .menu-items.active {
+        transform: translateY(0);
+    }
+
+    .menu-items:not(.footer) {
+        border-bottom: 1px solid var(--wp--preset--color--gray-100);
+        transition: transform 0.2s;
+        background-color: white;
+        align-items: center;
+        width: 100%;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        gap: 32px;
+        padding-top: 16px;
+        padding-bottom: 32px;
+        transform: translateY(var(--header-height));
+    }
+
+    .page-identity > .name {
+        display: none;
+    }
+}
+
 .page-identity {
+    z-index: 10;
     text-decoration: none;
     display: flex;
     gap: 8px;
@@ -88,6 +151,7 @@
 }
 
 .header-button {
+    transition: all 0.2s;
     cursor: pointer;
     border: none;
     background: none;
@@ -137,7 +201,40 @@
 }
 
 .control-buttons {
+    z-index: 10;
     display: flex;
     gap: 16px;
     align-items: center;
+}
+
+.control-buttons > .search-controls {
+    display: flex;
+    align-items: center;
+}
+
+.control-buttons > .search-controls.active {
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid var(--wp--preset--color--gray-100);
+    padding: 8px;
+
+}
+
+.control-buttons > .search-controls:not(.active) > form {
+    display: none;
+}
+
+.control-buttons > .search-controls > form {
+    height: 100%;
+}
+
+.control-buttons > .search-controls > form > input {
+    border: none;
+    font-family: var(--wp--preset--font-family--inter);
+    font-size: x-large;
+    padding: 8px;
+}
+
+.control-buttons > .search-controls > form > input:focus-visible {
+    outline: none;
 }

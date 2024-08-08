@@ -2,7 +2,7 @@
     get_header();
 ?>
 
-<article class="alignwide ">
+<article class="alignwide">
     <ul class="products-wrapper">
         <?php
             $args = array(

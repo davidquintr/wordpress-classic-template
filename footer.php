@@ -11,7 +11,7 @@
                     'menu' => 'footer',
                     'theme_location' => 'footer',
                     'container' => '',
-                    'items_wrap' => '<ul class="menu-items">%3$s</ul>'
+                    'items_wrap' => '<ul class="menu-items footer">%3$s</ul>'
                 )
             );
             ?>
