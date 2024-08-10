@@ -100,7 +100,7 @@
         position: relative;
     }
 
-    .menu-items:not(.active) {
+    .menu-items:not(.footer):not(.active) {
         transform: translateY(calc(-100% - var(--header-height))) !important;
         pointer-events: none;
     }
@@ -127,6 +127,16 @@
 
     .page-identity > .name {
         display: none;
+    }
+
+    .control-buttons > .search-controls.active  {
+        position: absolute;
+        right: 0;
+        z-index: 100;
+        background: white;
+        width: calc(100% - 16px);
+        box-sizing: border-box;
+        margin-inline: 8px;
     }
 }
 
@@ -225,10 +235,13 @@
 }
 
 .control-buttons > .search-controls > form {
+    flex: 1;
     height: 100%;
 }
 
 .control-buttons > .search-controls > form > input {
+width: 100%;
+    border-radius: 16px;
     border: none;
     font-family: var(--wp--preset--font-family--inter);
     font-size: x-large;

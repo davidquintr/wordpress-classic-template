@@ -36,8 +36,8 @@ $uri =  get_template_directory_uri();
             ?>
             <div class="control-buttons">
                 <div class="search-controls">
-                    <form >
-                        <input type="search" placeholder="Search"> 
+                    <form id="search-header">
+                        <input name="s" type="search" placeholder="Search"> 
                     </form>
                     <button class="header-button gray-color search">
                         <i class="fa-solid fa-magnifying-glass"></i>

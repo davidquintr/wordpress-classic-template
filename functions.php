@@ -45,4 +45,30 @@ function gabsters_enqueue_block_assets()
 }
 
 add_action('enqueue_block_assets', 'gabsters_enqueue_block_assets');
+
+function only_logged_in_users_can_purchase($is_purchasable) {
+    if (!is_user_logged_in()) {
+        return false;
+    }
+    return $is_purchasable;
+}
+
+add_filter('woocommerce_is_purchasable', 'only_logged_in_users_can_purchase');
+
+function customize_unavailable_product_message($availability, $product) {
+    if (!$product->is_purchasable()) {
+        $locale = get_locale();
+
+        if ($locale === 'es_ES') {
+            return 'Lo siento, debes iniciar sesión para agregar este producto al carrito.';
+        } elseif ($locale === 'en_US') {
+            return 'Sorry, you must log in to add this product to the cart.';
+        } else {
+            return 'Sorry, this product is unavailable.';
+        }
+    }
+    return $availability;
+}
+
+add_filter('woocommerce_get_availability_text', 'customize_unavailable_product_message', 10, 2);
 ?>
