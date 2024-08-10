@@ -13,3 +13,23 @@ main {
 ins {
     text-decoration: none;
 }
+
+.woocommerce-notices-wrapper {
+    max-width: var(--wp--style--global--wide-size) !important;
+    font-family: var(--wp--preset--font-family--inter);
+    color: var(--wp--preset--color--black);
+}
+
+.woocommerce-notices-wrapper > .woocommerce-message {
+    background-color: var(--wp--preset--color--gray-100);
+
+}
+
+.woocommerce-notices-wrapper a{
+    color: var(--wp--preset--color--black);
+    text-decoration: none;
+}
+
+.woocommerce-notices-wrapper a:hover {
+    color: var(--wp--preset--color--primary);
+}

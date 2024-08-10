@@ -2,6 +2,15 @@
     font-family: var(--wp--preset--font-family--inter);
 }
 
+.cart-page .wc-block-components-product-name {
+    color: var(--wp--preset--color--black);
+    text-decoration: none;
+}
+
+.cart-page .wc-block-components-product-name:hover {
+    color: var(--wp--preset--color--primary);
+}
+
 .cart-page .wc-block-cart__submit-button,
 .cart-page .wc-block-components-totals-coupon__button {
     background-color: var(--wp--preset--color--white);

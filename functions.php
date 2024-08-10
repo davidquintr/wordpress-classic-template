@@ -71,4 +71,11 @@ function customize_unavailable_product_message($availability, $product) {
 }
 
 add_filter('woocommerce_get_availability_text', 'customize_unavailable_product_message', 10, 2);
+
+function filter_search_results($query) {
+    if ($query->is_search && !is_admin() && $query->is_main_query()) {
+        $query->set('post_type', 'product');
+    }
+}
+add_action('pre_get_posts', 'filter_search_results');
 ?>
