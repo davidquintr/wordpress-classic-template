@@ -2,6 +2,7 @@
 import "../styles/basic.css";
 import "../styles/parts/header.css";
 import "../styles/parts/footer.css";
+import "../styles/parts/comments.css"
 import "../styles/patterns/custom-link.css";
 import "../styles/patterns/separator-high.css";
 import "../styles/patterns/separator-tiny.css"
