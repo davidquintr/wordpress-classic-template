@@ -14,7 +14,8 @@ ins {
     text-decoration: none;
 }
 
-.woocommerce-notices-wrapper {
+.woocommerce-notices-wrapper, 
+.wp-block-woocommerce-checkout {
     max-width: var(--wp--style--global--wide-size) !important;
     font-family: var(--wp--preset--font-family--inter);
     color: var(--wp--preset--color--black);

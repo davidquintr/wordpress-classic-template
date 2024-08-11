@@ -78,4 +78,21 @@ function filter_search_results($query) {
     }
 }
 add_action('pre_get_posts', 'filter_search_results');
+
+function mytheme_default_avatar( $avatar_defaults ) 
+{
+    $avatar = get_option('avatar_default');
+    $new_avatar_url = get_template_directory_uri() . '/assets/svg/person.svg';
+
+    if( $avatar != $new_avatar_url )
+    {
+        update_option( 'avatar_default', $new_avatar_url );
+    }
+
+    $avatar_defaults[ $new_avatar_url ] = 'Default Avatar';
+    return $avatar_defaults;
+}
+
+add_filter( 'avatar_defaults', 'mytheme_default_avatar' );
+
 ?>

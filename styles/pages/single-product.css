@@ -181,13 +181,13 @@
 .product-info .single_add_to_cart_button:active {
     transform: scale(0.95);
 }
-
 .product-info .reset_variations {
     margin-top: 16px;
     color: var(--wp--preset--color--primary);
 }
 
-.product-info .woocommerce-variation-price, .product-info .woocommerce-variation-availability {
+.product-info .woocommerce-variation-price, .product-info .woocommerce-variation-availability,
+.product-info .woocommerce-product-rating {
     font-family: var(--wp--preset--font-family--tw-cent-mt-std);
     font-size: var(--wp--preset--font-size--large);
 }
@@ -195,4 +195,80 @@
 .product-info .woocommerce-variation-availability {
     font-family: var(--wp--preset--font-family--tw-cent-mt-std);
     font-size: var(--wp--preset--font-size--x-large);
+}
+
+.related-title {
+    text-align: center;
+}
+
+.related-title > .title {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: var(--wp--preset--font-size--xx-large);
+    font-weight: normal;
+}
+
+.products-wrapper.tiny-version {
+    gap: 32px;
+    margin-inline: auto;
+    max-width: 1100px;
+}
+
+.products-wrapper.tiny-version hr.separator-tiny, 
+.products-wrapper.tiny-version p.price {
+    display: none;
+}
+
+.product-metadata {
+    margin-block: 64px !important;
+}
+
+.product-metadata > .product-metadata-tabs {
+    gap: 32px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 3px solid var(--wp--preset--color--gray-100);
+}
+
+.product-metadata > .product-metadata-tabs > .product-tab-button.active {
+    color: var(--wp--preset--color--primary);
+    border-bottom: 3px solid var(--wp--preset--color--primary);
+}
+
+.product-metadata > .product-metadata-tabs > .product-tab-button:hover{
+    color: var(--wp--preset--color--primary);
+}
+
+.product-info .woocommerce-product-rating > a {
+    display: none;
+}
+
+.product-metadata > .product-metadata-tabs > .product-tab-button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: large;
+    font-family: var(--wp--preset--font-family--inter);
+    transition: color 0.3s;
+    padding-bottom: 8px;
+}
+
+.product-metadata > .product-tabs {
+    margin: 0;
+    margin-block: 32px;
+    padding: 0;
+}
+
+.product-metadata > .product-tabs > .product-tab-item:not(.active){
+    display: none;
+
+}
+
+.product-metadata > .product-tabs > .product-tab-item {
+    list-style: none;
+}
+
+.product-metadata > .product-tabs > .product-tab-item.raw-text {
+    font-size: large;
+    font-family: var(--wp--preset--font-family--inter);
 }

@@ -16,6 +16,7 @@
 }
 
 .page-header > .inner-content {
+    position: relative;
     padding-inline: 16px;
     padding-block: 8px;
     max-width: var(--wp--style--global--wide-size);
@@ -210,6 +211,10 @@
     height: 24px;
 }
 
+.header-button-img > img.full-height {
+    height: 100%;
+}
+
 .control-buttons {
     z-index: 10;
     display: flex;
@@ -250,4 +255,96 @@ width: 100%;
 
 .control-buttons > .search-controls > form > input:focus-visible {
     outline: none;
+}
+
+.page-header .profile-options:not(.active){
+    height: 0;
+}
+
+.page-header .profile-options {
+    overflow: hidden;
+    transition: all 0.2s;
+    height: 120px;
+    gap: 8px;
+    position: absolute;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    width: 100%;
+    background-color: var(--wp--preset--color--white);
+}
+
+.page-header .profile-options > .user-info {
+    padding: 16px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid var(--wp--preset--color--gray-100);
+    height: 100%;
+    border-top: none;
+    }
+
+.page-header .profile-options > .user-info > .user-image > img {
+    height: 100%;
+}
+
+.page-header .profile-options > .user-info > .user-image {
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid var(--wp--preset--color--gray-100);
+    aspect-ratio: 1;
+    height: 64px;
+    width: auto;
+}
+
+.page-header .profile-options > .user-info > .user-image > img:not(.full-height) {
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.page-header .profile-options > .user-info > .info-details {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.page-header .profile-options > .user-info > .info-details .user-control-buttons {
+    display: flex;
+    gap: 8px;
+}
+.page-header .profile-options > .user-info > .info-details .user-control-buttons > a {
+    border-radius: 9999px;
+    color: var(--wp--preset--color--black);
+    font-family: var(--wp--preset--font-family--inter);
+    text-decoration: none;
+    border: 1px solid var(--wp--preset--color--gray-100);
+    text-align: center;
+    padding: 8px;
+    flex: 1;
+    transition: all 0.2s;
+    font-size: var(--wp--preset--font-size--regular);
+}
+
+.page-header .profile-options > .user-info > .info-details .user-control-buttons > a:hover {
+    background-color: var(--wp--preset--color--gray-100);
+}
+
+.page-header .profile-options > .user-info > .info-details .user-control-buttons > a:active {
+    transform: scale(0.95);
+}
+
+.page-header .profile-options > .user-info > .info-details .username {
+    font-weight: bold;
+    font-family: var(--wp--preset--font-family--inter);
+    font-size: var(--wp--preset--font-size--regular);
+}
+
+@media screen and (max-width: 768px) {
+    .page-header .profile-options {
+        right: 0;
+    }
 }

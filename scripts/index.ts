@@ -11,9 +11,13 @@ import "../styles/pages/cart.css"
 import "../styles/pages/product-cat.css"
 import "../styles/pages/single-product.css"
 import "../styles/pages/search.css"
+import "../styles/pages/my-account.css"
 
 /* Scripts */
 import "./navigation"
 import "./search-header"
 import "./scroll"
 import "./image-switch"
+import "./product-tab"
+import './user-info'
+
