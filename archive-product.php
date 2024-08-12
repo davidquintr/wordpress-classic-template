@@ -2,12 +2,13 @@
     get_header();
 ?>
 
-<article class="alignwide">
+<article class="alignwide shop-page">
+    <h1>Shop</h1>
     <ul class="products-wrapper">
         <?php
             $args = array(
                 'post_type' => 'product',
-                'posts_per_page' => 10,
+                'posts_per_page' => -1,
             );
 
             // The Query

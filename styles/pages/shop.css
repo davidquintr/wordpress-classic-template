@@ -1,9 +1,19 @@
+.shop-product-category > .products-in-cat > h1 ,
+.shop-page > h1{
+    text-align: left;
+    margin: 0;
+    color: var(--wp--preset--color--black);
+    font-size: var(--wp--preset--font-size--iv-large);
+    font-family: var(--wp--preset--font-family--tw-cent-mt-std);
+}
+
 .products-wrapper {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: 0;
     margin: 0;
-    gap: 16px;
+    gap: 24px;
+    margin-block: 16px;
 }
 
 @media screen and (max-width: 1280px) {

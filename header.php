@@ -9,15 +9,6 @@ $default_avatar_url = get_avatar_url(0);
 
 $user_info = get_userdata($user_id);
 
-$theme_default_avatar = '/assets/svg/person.svg';
-
-$parsed_url = parse_url($avatar_url);
-$query_params = [];
-if (isset($parsed_url['query'])) {
-    parse_str($parsed_url['query'], $query_params);
-}
-$decoded_avatar_url = isset($query_params['d']) ? urldecode($query_params['d']) : '';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,11 +50,7 @@ $decoded_avatar_url = isset($query_params['d']) ? urldecode($query_params['d']) 
                     </button>
                 </div>
                 <button class="header-button-img user">
-                    <?php if (strpos($decoded_avatar_url, $theme_default_avatar) == true): ?>
-                        <img src="<?php echo $uri . '/assets/svg/person.svg' ?>" alt="Avatar">
-                    <?php else: ?>
-                        <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
-                    <?php endif; ?>
+                    <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
                 </button>
                 <a href="<?php echo wc_get_cart_url() ?>" class="header-button-img image-only">
                     <img src="<?php echo $uri . "/assets/svg/bag.svg" ?>">
@@ -76,11 +63,7 @@ $decoded_avatar_url = isset($query_params['d']) ? urldecode($query_params['d']) 
         <div class="profile-options">
             <div class="user-info">
                 <picture class="user-image">
-                    <?php if (strpos($decoded_avatar_url, $theme_default_avatar) == true): ?>
-                        <img src="<?php echo $uri . '/assets/svg/person.svg' ?>" alt="Avatar">
-                    <?php else: ?>
-                        <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
-                    <?php endif; ?>
+                    <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
                 </picture>
                 <div class="info-details">
                     <?php if (is_user_logged_in()): ?>
@@ -101,7 +84,7 @@ $decoded_avatar_url = isset($query_params['d']) ? urldecode($query_params['d']) 
                                 <?php _e('Logout', 'text-domain'); ?>
                             </a>
                         <? else: ?>
-                            <a href="<?php echo wp_login_url(home_url()); ?>">
+                            <a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">
                                 <?php _e('Sign In', 'text-domain'); ?>
                             </a>
                         <?php endif; ?>
