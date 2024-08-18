@@ -26,9 +26,19 @@
     border: 1px solid var(--wp--preset--color--gray-100);
     padding: 24px;
     gap: 16px;
+    top: calc(var(--header-height) + 16px);
+    position: sticky;
+}
+
+@media screen and (max-width: 1024px) {
+    .product-sorting {
+        position: unset;
+        top: auto;
+    }
 }
 
 .products-in-cat {
+    flex: 1;
     text-align: center;
     display: flex;
     flex-direction: column;

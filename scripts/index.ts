@@ -1,4 +1,5 @@
 /* Styles */
+import "../styles/fonts.css";
 import "../styles/basic.css";
 import "../styles/parts/header.css";
 import "../styles/parts/footer.css";
@@ -6,7 +7,9 @@ import "../styles/parts/comments.css"
 import "../styles/patterns/custom-link.css";
 import "../styles/patterns/separator-high.css";
 import "../styles/patterns/separator-tiny.css"
+import "../styles/patterns/separator-medium.css"
 import "../styles/template-part/product-item.css"
+import "../styles/pages/home.css"
 import "../styles/pages/shop.css"
 import "../styles/pages/cart.css"
 import "../styles/pages/product-cat.css"

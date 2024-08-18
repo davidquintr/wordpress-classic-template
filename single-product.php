@@ -37,38 +37,56 @@ get_header('shop'); ?>
 				$main_image_url = wp_get_attachment_url($main_image_id);
 
 				if ($main_image_url) {
-					array_push($images, $main_image_url);
+					array_push($images, array(
+						'url' => $main_image_url,
+						'alt' => get_post_meta($main_image_id, '_wp_attachment_image_alt', true),
+						'title' => get_the_title($main_image_id),
+					)
+					);
 				}
 
 				$attachment_ids = $product->get_gallery_image_ids();
 				if (!empty($attachment_ids)) {
 					foreach ($attachment_ids as $attachment_id) {
 						$image_url = wp_get_attachment_url($attachment_id);
-						array_push($images, $image_url);
+						array_push($images, array(
+							'url' => $image_url,
+							'alt' => get_post_meta($attachment_id, '_wp_attachment_image_alt', true),
+							'title' => get_the_title($attachment_id),
+						)
+						);
 					}
 				}
-
 				?>
 				<ul class="images-lateral">
 					<?php
 					$default_image = get_template_directory_uri() . '/assets/images/product-no-icon.png';
 					if (count($images) < 1) {
-						array_push($images, $default_image);
+						array_push($images, array(
+							'url' => $default_image,
+							'alt' => 'Default product image',
+							'title' => 'No image available',
+						)
+						);
 					}
 
 					foreach ($images as $image):
 						?>
 						<li class="image-shop-item">
-							<img src="<?php echo $image ?>" />
+							<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
+								title="<?php echo esc_attr($image['title']); ?>" />
 						</li>
 						<?php
 					endforeach;
 					?>
 				</ul>
 				<picture class="main-image">
-					<img class="showcase-shop-image" src="<?php echo $images[0] ?>" />
+					<img class="showcase-shop-image" src="<?php echo esc_url($images[0]['url']); ?>"
+						alt="<?php echo esc_attr($images[0]['alt']); ?>"
+						title="<?php echo esc_attr($images[0]['title']); ?>" />
 				</picture>
 			</div>
+
 
 
 			<div class="product-info">

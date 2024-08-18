@@ -59,15 +59,13 @@
 							"fontFamily": "Century Gothic",
 							"fontWeight": "800",
 							"fontStyle": "bold",
-							"fontStretch": "normal",
-							"src": [ "file:./assets/fonts/centurygothic_bold.ttf" ]
+							"fontStretch": "normal"
 						},
 						{
 							"fontFamily": "Century Gothic",
 							"fontWeight": "400",
 							"fontStyle": "normal",
-							"fontStretch": "normal",
-							"src": [ "file:./assets/fonts/centurygothic.ttf" ]
+							"fontStretch": "normal"
 						}
 					]
 				},
@@ -80,15 +78,13 @@
 							"fontFamily": "TwCenMTStd",
 							"fontWeight": "800",
 							"fontStyle": "bold",
-							"fontStretch": "normal",
-							"src": [ "file:./assets/fonts/TwCenMTStdBold.otf" ]
+							"fontStretch": "normal"
 						},
 						{
 							"fontFamily": "TwCenMTStd",
 							"fontWeight": "400",
 							"fontStyle": "normal",
-							"fontStretch": "normal",
-							"src": [ "file:./assets/fonts/TwCenMTStd.otf" ]
+							"fontStretch": "normal"
 						}
 					]
 				}	

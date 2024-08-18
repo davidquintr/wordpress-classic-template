@@ -63,6 +63,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 1;
+    object-fit: contain;
 }
 
 .product-inner > .product-image > .main-image > img {

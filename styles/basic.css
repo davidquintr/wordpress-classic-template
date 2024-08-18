@@ -12,6 +12,7 @@ main {
     flex: 1;
     padding: 16px;
     padding-bottom: 64px;
+    padding-top: 0;
 }
 
 ins {

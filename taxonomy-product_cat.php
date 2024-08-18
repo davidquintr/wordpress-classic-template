@@ -11,13 +11,13 @@ get_header();
     {
         $args = array(
             'post_type' => 'product',
-            'posts_per_page' => -1, // Obtener todos los productos de la categoría
+            'posts_per_page' => -1,
             'tax_query' => array(
                 array(
                     'taxonomy' => 'product_cat',
                     'field' => 'term_id',
                     'terms' => $category->term_id,
-                    'include_children' => false, // Solo productos directamente en esta categoría
+                    'include_children' => false,
                 ),
             ),
         );
@@ -29,12 +29,10 @@ get_header();
             echo '<ul class="products-wrapper">';
             while ($loop->have_posts()) {
                 $loop->the_post();
-                // Usar la parte de plantilla personalizada para mostrar productos
                 get_template_part('template-parts/content', 'product');
             }
             echo '</ul>';
         }
-        // Restaurar datos originales
         wp_reset_postdata();
     }
 
@@ -53,7 +51,6 @@ get_header();
             <p class="product-sort-title"><?php echo $category->name ?>'s Collection</p>
             <?php
             foreach ($subcategories as $subcategory) {
-                // Obtener los hijos de la subcategoría actual
                 $child_subcategories = get_terms(
                     array(
                         'taxonomy' => 'product_cat',
@@ -62,18 +59,13 @@ get_header();
                     )
                 );
 
-                // Verificar si la subcategoría tiene hijos
                 if (!is_wp_error($child_subcategories) && !empty($child_subcategories)) {
-                    // Mostrar el nombre de la subcategoría como H2 solo si tiene hijos
                     echo '<details class="main-category-slide">';
                     echo '<summary id="' . parse_to_slug($subcategory->name) . '" class="subcategory parent">' . esc_html($subcategory->name) . '</summary>';
 
-                    // Mostrar los hijos
                     echo '<ul class="child-categories">';
                     foreach ($child_subcategories as $child) {
                         echo '<li><a href="#' . parse_to_slug($child->name) . '" class="subcategory">' . esc_html($child->name) . '</a></li>';
-
-                        // Aquí puedes añadir lógica para mostrar los productos de la subcategoría hija
                     }
                     echo '</ul>';
 
@@ -88,14 +80,18 @@ get_header();
         echo '<h1 id="' . parse_to_slug($category->name) . '" class="category">' . esc_html($category->name) . '</h1>';
         // Mostrar productos de la categoría
         display_products_by_category($category);
-        $parent = -1;
         if (!is_wp_error($subcategories) && !empty($subcategories)) {
+            $last_parent = null; 
+        
             foreach ($subcategories as $subcategory) {
-                echo '<h2 id="' . parse_to_slug($subcategory->name) . '" class="subcategory' . ($parent == $subcategory->parent ? ' parent' : '') . '">' . esc_html($subcategory->name) . '</h2>';
+                $is_parent = $last_parent === $subcategory->parent;       
+                echo '<h2 id="' . parse_to_slug($subcategory->name) . '" class="subcategory' . ($is_parent ? ' parent' : '') . '">' . esc_html($subcategory->name) . '</h2>';
                 display_products_by_category($subcategory);
-                $parent = $subcategory->parent;
+                $last_parent = $subcategory->parent; 
+
             }
         }
+        
         echo '</div>';
     }
 

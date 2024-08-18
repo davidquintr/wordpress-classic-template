@@ -25,7 +25,7 @@ $user_info = get_userdata($user_id);
     <header class="page-header on-scroll">
         <div class="inner-content">
             <a href="/" class="page-identity">
-                <img class="icon" src="<?php echo esc_url($image_url); ?>" alt="<?php bloginfo('name'); ?>">
+                <img class="icon" src="<?php echo esc_url($image_url); ?>" alt="logo">
                 <h1 class="name has-tw-cent-mt-std-font-family">
                     <?php echo bloginfo('name'); ?>
                 </h1>
@@ -45,17 +45,17 @@ $user_info = get_userdata($user_id);
                     <form id="search-header">
                         <input name="s" type="search" placeholder="Search">
                     </form>
-                    <button class="header-button gray-color search">
+                    <button aria-label="Search" class="header-button gray-color search">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-                <button class="header-button-img user">
+                <button aria-label="User Information" class="header-button-img user">
                     <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
                 </button>
-                <a href="<?php echo wc_get_cart_url() ?>" class="header-button-img image-only">
-                    <img src="<?php echo $uri . "/assets/svg/bag.svg" ?>">
+                <a aria-label="Cart" href="<?php echo wc_get_cart_url() ?>" class="header-button-img image-only">
+                    <img src="<?php echo $uri . "/assets/svg/bag.svg" ?>" alt="cart">
                 </a>
-                <button class="header-button navigation">
+                <button aria-label="Navigation" class="header-button navigation">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>

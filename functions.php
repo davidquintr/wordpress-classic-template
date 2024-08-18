@@ -79,5 +79,4 @@ function filter_search_results($query) {
 }
 add_action('pre_get_posts', 'filter_search_results');
 
-
 ?>

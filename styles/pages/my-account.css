@@ -40,6 +40,9 @@
     transform: scale(0.95);
 }
 
+.woocommerce-MyAccount-content {
+}
+
 .woocommerce-MyAccount-content a, 
 .woocommerce-LostPassword.lost_password > a {
     color: var(--wp--preset--color--primary);

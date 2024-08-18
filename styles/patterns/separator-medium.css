@@ -1,0 +1,9 @@
+.separator-medium{
+    height: 14px;
+    width: 100%;
+    max-width: 120px;
+    border: none;
+    background-color: var(--wp--preset--color--primary);
+    margin-block: 12px;
+    border-radius: 9999px;
+}

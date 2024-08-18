@@ -1,0 +1,57 @@
+.contact-form {
+    font-family: var(--wp--preset--font-family--tw-cent-mt-std);
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container {
+    max-width: var(--wp--style--global--wide-size);
+    width: 100%;
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form  .wp-block-button__link:active {
+    transform: scale(0.9);
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form  .wp-block-button__link:hover {
+    border-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--white);
+    background-color: var(--wp--preset--color--primary);
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form  .wp-block-button__link {
+    font-family: var(--wp--preset--font-family--inter) !important;
+    background-color: transparent;
+    color: var(--wp--preset--color--black);
+    border: 1px solid var(--wp--preset--color--black);
+    transition: 0.3s all;
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form .grunion-field-email-wrap > label {
+    text-align: center;
+    font-size: var(--wp--preset--font-size--large);
+    margin-bottom: 8px;
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form .grunion-field-email-wrap > input{
+    padding: 8px;
+    font-size: var(--wp--preset--font-size--large);
+    outline-color: var(--wp--preset--color--primary);
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form .grunion-field-email-wrap > input{
+    height: 64px;
+    border: 1px solid var(--wp--preset--color--black);
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form .grunion-field-email-wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 1024px;
+    margin-inline: auto;
+    width: 100%;
+}
+
+.contact-form > .wp-block-jetpack-contact-form-container > form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
