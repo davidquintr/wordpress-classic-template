@@ -73,6 +73,7 @@
 
 .product-info > .product_title.entry-title {
     margin-top: 0;
+    margin-bottom: 8px;
     font-family: var(--wp--preset--font-family--tw-cent-mt-std);
     font-size: var(--wp--preset--font-size--xxx-large);
 }
@@ -80,6 +81,7 @@
 .product-info > .price {
     font-family: var(--wp--preset--font-family--century-gothic);
     font-size: var(--wp--preset--font-size--large);
+    margin-bottom: 8px;
 }
 
 .product-info .product_meta {
@@ -271,4 +273,8 @@
 .product-metadata > .product-tabs > .product-tab-item.raw-text {
     font-size: large;
     font-family: var(--wp--preset--font-family--inter);
+}
+
+.woocommerce-product-details__short-description {
+    display: none;
 }

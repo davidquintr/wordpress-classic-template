@@ -1,46 +1,27 @@
 <!-- /wp-content/themes/improvedtheme-wp/taxonomy-product_cat.php -->
 
 <?php
+include get_template_directory() . '/inc/parse_to_slug.php';
 get_header();
 ?>
 
 <article class="alignwide shop-product-category">
     <?php
-    // Función para mostrar productos de una categoría específica
-    function display_products_by_category($category) {
-        // Verificar si los parámetros de orden y filtro están definidos
-        $orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
-        $order = isset($_GET['order']) ? sanitize_text_field($_GET['order']) : 'DESC';
-        $min_price = isset($_GET['min_price']) ? sanitize_text_field($_GET['min_price']) : '';
-        $max_price = isset($_GET['max_price']) ? sanitize_text_field($_GET['max_price']) : '';
-
+    function display_products_by_category($category)
+    {
         $args = array(
             'post_type' => 'product',
-            'posts_per_page' => -1,
+            'posts_per_page' => -1, // Obtener todos los productos de la categoría
             'tax_query' => array(
                 array(
                     'taxonomy' => 'product_cat',
-                    'field'    => 'term_id',
-                    'terms'    => $category->term_id,
-                    'include_children' => false,
+                    'field' => 'term_id',
+                    'terms' => $category->term_id,
+                    'include_children' => false, // Solo productos directamente en esta categoría
                 ),
             ),
-            'meta_query' => array(),
-            'orderby' => $orderby,
-            'order' => $order,
         );
 
-        // Filtrar por precio si los parámetros están definidos
-        if ($min_price !== '' && $max_price !== '') {
-            $args['meta_query'][] = array(
-                'key' => '_price',
-                'value' => array($min_price, $max_price),
-                'compare' => 'BETWEEN',
-                'type' => 'NUMERIC',
-            );
-        }
-
-        // Consulta de productos
         $loop = new WP_Query($args);
 
         // Mostrar productos
@@ -57,56 +38,62 @@ get_header();
         wp_reset_postdata();
     }
 
-    // Función para mostrar una categoría y sus subcategorías
-    function display_category_with_subcategories($category) {
-        // Mostrar nombre de la categoría
-        // Mostrar opciones de orden y filtro
+    function display_category_with_subcategories($category)
+    {
+        $subcategories = get_terms(
+            array(
+                'taxonomy' => 'product_cat',
+                'child_of' => $category->term_id,
+                'hide_empty' => false,
+            )
+        );
+
         ?>
-        <form method="GET" class="product-sorting">
-            <select class="select-sort" name="orderby">
-                <option value="date">Order by Date</option>
-                <option value="price" <?php selected(isset($_GET['orderby']) && $_GET['orderby'] === 'price'); ?>>Order by Price</option>
-            </select>
-            <select class="select-sort" name="order">
-                <option value="asc" <?php selected(isset($_GET['order']) && $_GET['order'] === 'asc'); ?>>Ascending Order</option>
-                <option value="desc" <?php selected(isset($_GET['order']) && $_GET['order'] === 'desc'); ?>>Descending Order</option>
-            </select>
-            <div class="input-sort">
-                <label for="min_price">Minimum Price</label>
-                <div class="format">
-                    <button class="minus" type="button">-</button>
-                    <input class="spinner-target" min="0" type="number" name="min_price" value="<?php echo esc_attr($_GET['min_price'] ?? '0'); ?>">
-                    <button class="plus" type="button">+</button>
-                </div>
-            </div>
-            <div class="input-sort">
-                <label for="max_price">Maximum Price</label>
-                <div class="format">
-                    <button class="minus" type="button">-</button>
-                    <input class="spinner-target" type="number" min="0" name="max_price" value="<?php echo esc_attr($_GET['max_price'] ?? '4000'); ?>">
-                    <button class="plus" type="button">+</button>
-                </div>
-            </div>
-            <button type="submit">Filter</button>
-        </form>
+        <div class="product-sorting">
+            <p class="product-sort-title"><?php echo $category->name ?>'s Collection</p>
+            <?php
+            foreach ($subcategories as $subcategory) {
+                // Obtener los hijos de la subcategoría actual
+                $child_subcategories = get_terms(
+                    array(
+                        'taxonomy' => 'product_cat',
+                        'child_of' => $subcategory->term_id,
+                        'hide_empty' => false,
+                    )
+                );
+
+                // Verificar si la subcategoría tiene hijos
+                if (!is_wp_error($child_subcategories) && !empty($child_subcategories)) {
+                    // Mostrar el nombre de la subcategoría como H2 solo si tiene hijos
+                    echo '<details class="main-category-slide">';
+                    echo '<summary id="' . parse_to_slug($subcategory->name) . '" class="subcategory parent">' . esc_html($subcategory->name) . '</summary>';
+
+                    // Mostrar los hijos
+                    echo '<ul class="child-categories">';
+                    foreach ($child_subcategories as $child) {
+                        echo '<li><a href="#' . parse_to_slug($child->name) . '" class="subcategory">' . esc_html($child->name) . '</a></li>';
+
+                        // Aquí puedes añadir lógica para mostrar los productos de la subcategoría hija
+                    }
+                    echo '</ul>';
+
+                    echo '</details>';
+                }
+            }
+            ?>
+        </div>
+
         <?php
         echo '<div class="products-in-cat">';
-        echo '<h1>' . esc_html($category->name) . '</h1>';
+        echo '<h1 id="' . parse_to_slug($category->name) . '" class="category">' . esc_html($category->name) . '</h1>';
         // Mostrar productos de la categoría
         display_products_by_category($category);
-
-        // Obtener subcategorías
-        $subcategories = get_terms(array(
-            'taxonomy' => 'product_cat',
-            'child_of' => $category->term_id,
-            'hide_empty' => false,
-        ));
-
-        // Mostrar subcategorías y sus productos
+        $parent = -1;
         if (!is_wp_error($subcategories) && !empty($subcategories)) {
             foreach ($subcategories as $subcategory) {
-                echo '<h2 class="subcategory">' . esc_html($subcategory->name) . '</h2>';
+                echo '<h2 id="' . parse_to_slug($subcategory->name) . '" class="subcategory' . ($parent == $subcategory->parent ? ' parent' : '') . '">' . esc_html($subcategory->name) . '</h2>';
                 display_products_by_category($subcategory);
+                $parent = $subcategory->parent;
             }
         }
         echo '</div>';
