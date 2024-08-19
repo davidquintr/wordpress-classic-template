@@ -1,4 +1,4 @@
-.product-item {
+.product-item, .wp-block-post.product{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,52 +6,68 @@
     text-align: center;
 }
 
+.wp-block-post.product > div {
+    margin: 0;
+}
+
 .product-item >  .details p, .product-item >  .details h2{
     margin: 0;
 }
 
-.product-item > .details > .title {
+.product-item > .details > .title{
     font-weight: normal;
     font-size: var(--wp--preset--font-size--xx-large);
 }
 
 
-.product-item > .details > .price {
+.product-item > .details > .price,
+.wp-block-post.product > div .wc-block-components-product-price {
     font-size: var(--wp--preset--font-size--large);
     font-family: var(--wp--preset--font-family--century-gothic);
 }
 
-.product-item > .details > .title > a{
+.product-item > .details > .title > a,
+.wp-block-post.product > div > h2 > a {
     text-decoration: none;
     color: var(--wp--preset--color--black);
     transition: color 0.2s;
 } 
 
-.product-item > .details > .title > a:hover {
+.product-item > .details > .title > a:hover,
+.wp-block-post.product > div > h2 > a:hover {
     color: var(--wp--preset--color--primary);
 }
 
-.product-item > .image-link > img {
+.product-item > .image-link > img,
+.wp-block-post.product > div > a > img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: contain !important;
 }
 
-.product-item > .image-link {
+.product-item > .image-link,
+.wp-block-post.product > div{
     aspect-ratio: 1;
     overflow: hidden;
     max-width: 360px;
     height: auto;
 }
 
-.product-item > .image-link > img {
+.product-item > .image-link > img,
+.wp-block-post.product > div > a > img{
     transition: all 0.3s;
 }
 
-.product-item > .image-link:hover > img{
+.product-item > .image-link:hover > img, 
+.wp-block-post.product > div > a > img:hover{
     transform: scale(1.2);
 }
 
-.product-item > .image-link:active > img{
+.product-item > .image-link:active > img,
+.wp-block-post.product > div > a > img:active{
     opacity: 0.8;
+}
+
+.wp-block-post-template.product-item {
+    align-items: start !important;
 }

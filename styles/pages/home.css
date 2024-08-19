@@ -52,6 +52,5 @@
 
 .contact-form > .wp-block-jetpack-contact-form-container > form > div {
     display: flex;
-    flex-direction: column;
     gap: 16px;
 }
