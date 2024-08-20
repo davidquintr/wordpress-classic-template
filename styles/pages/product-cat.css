@@ -91,6 +91,10 @@
     list-style: none;
 }
 
+.main-category-slide > summary::-webkit-details-marker {
+    display: none;
+}
+
 .main-category-slide[open] > summary::after {
     content: "-";
 }
