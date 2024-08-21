@@ -38,10 +38,7 @@
 }
 
 .products-in-cat {
-    flex: 1;
     text-align: center;
-    display: flex;
-    flex-direction: column;
 }
 
 .shop-product-category > .products-in-cat > h1 {
