@@ -47,7 +47,7 @@
 }
 
 .product-item > .image-link,
-.wp-block-post.product > div{
+.wp-block-post.product > div:first-child {
     aspect-ratio: 1;
     overflow: hidden;
     max-width: 360px;

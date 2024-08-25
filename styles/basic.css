@@ -39,3 +39,18 @@ ins {
 .woocommerce-notices-wrapper a:hover {
     color: var(--wp--preset--color--primary);
 }
+
+
+@media screen and (max-width: 782px) {
+    .inverted-on-mobile {
+        flex-direction: column-reverse !important;
+    }   
+}
+
+.woocommerce-checkout-payment button {
+    background-color: var(--wp--preset--color--primary) !important;
+}
+
+.woocommerce-checkout-payment button:hover {
+    background-color: var(--wp--preset--color--primary-opaque) !important;
+}
