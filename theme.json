@@ -1,4 +1,6 @@
 {
+	"$schema": "https://schemas.wp.org/wp/6.0/theme.json",
+	"patterns": ["two-cols-link"],
 	"settings": {
 		"appearanceTools": true,
 		"layout": {
@@ -136,8 +138,7 @@
 				  "slug": "v-large"
 				}
 			  ]
-		},
-		"useRootPaddingAwareAlignments": true
+		}
 	},
 	"version": 2
 }
