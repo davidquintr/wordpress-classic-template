@@ -43,7 +43,6 @@
     margin: 0;
 }
 
-.page-header .menu-items li > a, 
 .page-header .menu-items li > a {
     transition: color 0.2s;
     color: var(--wp--preset--color--black);

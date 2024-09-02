@@ -29,7 +29,7 @@ get_header();
             echo '<ul class="products-wrapper">';
             while ($loop->have_posts()) {
                 $loop->the_post();
-                get_template_part('template-parts/content', 'product');
+                get_template_part('template-parts/content', 'product-variant');
             }
             echo '</ul>';
         }

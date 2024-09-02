@@ -55,3 +55,7 @@ ins {
 .woocommerce-checkout-payment button:hover {
     background-color: var(--wp--preset--color--primary-opaque) !important;
 }
+
+.woocommerce-terms-and-conditions-wrapper {
+	margin-bottom: 32px;
+}
