@@ -73,6 +73,9 @@ get_header();
                 }
             }
             ?>
+            <button class="menu-button-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
 
         <?php

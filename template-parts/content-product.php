@@ -16,7 +16,7 @@
         <h2 class="title has-tw-cent-mt-std-font-family">
             <a class="image-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </h2>
-        <hr class="separator-tiny">
+        <img height="12" src="<?php echo esc_url(get_template_directory_uri() . '/assets/svg/quadrablocks-2.svg'); ?>" />
         <p class="price"><?php echo wc_get_product(get_the_ID())->get_price_html(); ?></p>
     </div>
 </li>

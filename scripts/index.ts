@@ -25,3 +25,4 @@ import "./image-switch"
 import "./product-tab"
 import './user-info'
 import './filter-spinner'
+import './menu-bar'

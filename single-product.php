@@ -80,11 +80,17 @@ get_header('shop'); ?>
 					endforeach;
 					?>
 				</ul>
+				<button class="button-direction left">
+					<i class="fa-solid fa-angle-left"></i>
+				</button>
 				<picture class="main-image">
 					<img class="showcase-shop-image" src="<?php echo esc_url($images[0]['url']); ?>"
 						alt="<?php echo esc_attr($images[0]['alt']); ?>"
 						title="<?php echo esc_attr($images[0]['title']); ?>" />
 				</picture>
+				<button class="button-direction right">
+					<i class="fa-solid fa-angle-right"></i>
+				</button>
 			</div>
 
 
@@ -104,16 +110,16 @@ get_header('shop'); ?>
 	<article class="product-metadata alignwide">
 		<div class="product-metadata-tabs">
 			<button class="product-tab-button active">
-				Product Details
+				About the Product
 			</button>
 			<button class="product-tab-button">
 				Customer Reviews
 			</button>
 		</div>
 		<ul class="product-tabs">
-			<li class="product-tab-item active raw-text ">
-				<?php echo $product->get_description() ?>
-			</li>
+			<li class="product-tab-item active raw-text">
+				<?php echo do_shortcode($product->get_description()); ?>
+			</li>`
 			<li class="product-tab-item">
 				<div id="comments" class="comments-area">
 					<?php

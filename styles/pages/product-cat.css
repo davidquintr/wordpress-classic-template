@@ -1,4 +1,5 @@
 .shop-product-category {
+    position: relative;
     display: flex;
     align-items: flex-start;
     gap: 8px;
@@ -9,10 +10,35 @@
         flex-direction: column;
     }
 
-    .product-sorting {
-        max-width: none !important;
+    .product-sorting.active {
+        left: -16px !important;
     }
 
+    .product-sorting {
+        transition: left 0.3s;
+        z-index: 100;
+        position: fixed !important;
+        left: -320px;
+        max-width: 320px !important;
+        width: 100%;
+        height: 100%;
+        top: 0 !important;
+    }
+
+    .product-sorting > .menu-button-toggle {
+        display: block !important;
+        width: 32px;
+        height: 32px;
+        border-radius: 0;
+        position: absolute;
+        right: -32px;
+        top: 25%;
+    }
+
+}
+
+.product-sorting > .menu-button-toggle {
+    display: none;
 }
 
 .product-sorting {
@@ -21,6 +47,7 @@
     flex-direction: column;
     max-width: 280px;
     width: 100%;
+    background: white;
     font-family: var(--wp--preset--font-family--inter);
     font-size: var(--wp--preset--font-size--large);
     border: 1px solid var(--wp--preset--color--gray-100);
@@ -30,23 +57,10 @@
     position: sticky;
 }
 
-@media screen and (max-width: 1024px) {
-    .product-sorting {
-        position: unset;
-        top: auto;
-    }
-}
-
 .products-in-cat {
     box-sizing: border-box;
     width: 100%;
     text-align: center;
-}
-
-@media screen and (max-width: 768px) {
-    .products-in-cat {
-        padding-inline: 10vw;
-    }
 }
 
 .shop-product-category > .products-in-cat > h1 {

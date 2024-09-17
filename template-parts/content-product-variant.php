@@ -4,7 +4,10 @@ $product = wc_get_product(get_the_ID());
 if ($product->is_type('variable')) {
     $available_variations = $product->get_available_variations();
     $shown_colors = []; // Array para almacenar los colores ya mostrados
-
+    ?>
+        <li class="product-internal">
+            <ul class="variant">
+    <?php
     foreach ($available_variations as $variation) {
         $variation_id = $variation['variation_id'];
         $variation_product = wc_get_product($variation_id);
@@ -44,10 +47,10 @@ if ($product->is_type('variable')) {
                     <div class="details">
                         <h2 class="title has-tw-cent-mt-std-font-family">
                             <a class="image-link" href="<?php echo esc_url($variation_product->get_permalink()); ?>">
-                                <?php echo esc_html($product->get_name() . ' ' . ucfirst($color));?>
+                                <?php echo ($product->get_name() . '<br><span class="product-color">' . ucfirst($color)) . '</span>';?>
                             </a>
                         </h2>
-                        <hr class="separator-tiny">
+                        <img height="12" src="<?php echo esc_url(get_template_directory_uri() . '/assets/svg/quadrablocks-2.svg'); ?>" />
                         <p class="price"><?php echo $variation_product->get_price_html(); ?></p>
                     </div>
                 </li>
@@ -56,6 +59,10 @@ if ($product->is_type('variable')) {
             }
         }
     }
+    ?>
+        </ul>
+    </li>
+    <?php
 } else {
     // Código para productos simples
     $thumbnail_id = get_post_thumbnail_id();
@@ -77,7 +84,7 @@ if ($product->is_type('variable')) {
             <h2 class="title has-tw-cent-mt-std-font-family">
                 <a class="image-link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             </h2>
-            <hr class="separator-tiny">
+            <img height="12" src="<?php echo esc_url(get_template_directory_uri() . '/assets/svg/quadrablocks-2.svg'); ?>" />
             <p class="price"><?php echo wc_get_product(get_the_ID())->get_price_html(); ?></p>
         </div>
     </li>
