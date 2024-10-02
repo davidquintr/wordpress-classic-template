@@ -43,11 +43,10 @@ if (leftButton && rightButton) {
   });
 }
 
-const colors = document.querySelectorAll(".cfvsw-swatches-option") as NodeListOf<HTMLDivElement>;
 const swatchContainers = document.querySelectorAll(".cfvsw-swatches-container") as NodeListOf<HTMLDivElement>;
-const dataVariants = document.querySelectorAll(".images-variants") as NodeListOf<HTMLInputElement>;
+const dataSwatchVariants = document.querySelectorAll(".images-variants") as NodeListOf<HTMLInputElement>;
 
-const VARIANT_DISABLED = "cfvsw-swatches-blur-disable";
+const VARIANT_SWATCH_DISABLED = "cfvsw-swatches-blur-disable";
 const selectedSwatchs: (string | null)[] = [];
 const DATA_SLUG = "data-slug";
 
@@ -60,7 +59,7 @@ const observeSwatchButtons = (container: HTMLElement, index: number) => {
             if (button.classList.contains("cfvsw-selected-swatch")) {
               selectedSwatchs[index] = button.getAttribute(DATA_SLUG);
               const currentSelection = [...selectedSwatchs].reverse().join("-");
-              dataVariants.forEach(el => {
+              dataSwatchVariants.forEach(el => {
                 if(el.id.includes(currentSelection)) {
                     showcaseImage.src = el.value;
                 }
