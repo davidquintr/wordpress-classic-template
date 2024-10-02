@@ -1,5 +1,7 @@
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+
 }
 
 body {
@@ -7,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100dvh;
+    overflow-x: hidden;
 }
 
 main {

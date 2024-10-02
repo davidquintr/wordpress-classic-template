@@ -34,3 +34,11 @@
 .page-footer > .inner-content > ul > li > a:hover {
     color: var(--wp--preset--color--primary) !important;
 }
+
+@media screen and (max-width: 768px) {
+    .page-footer .inner-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 32px;
+    }
+}

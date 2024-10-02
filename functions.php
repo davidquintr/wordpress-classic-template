@@ -46,6 +46,7 @@ function gabsters_enqueue_block_assets()
 
 add_action('enqueue_block_assets', 'gabsters_enqueue_block_assets');
 
+/*
 function only_logged_in_users_can_purchase($is_purchasable) {
     if (!is_user_logged_in()) {
         return false;
@@ -71,6 +72,7 @@ function customize_unavailable_product_message($availability, $product) {
 }
 
 add_filter('woocommerce_get_availability_text', 'customize_unavailable_product_message', 10, 2);
+*/
 
 function filter_search_results($query) {
     if ($query->is_search && !is_admin() && $query->is_main_query()) {

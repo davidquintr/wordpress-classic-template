@@ -142,7 +142,7 @@
 .product-info > form.variations_form{
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 16px;
 }
 
 .product-info > form:not(.variations_form){
@@ -199,6 +199,10 @@
 .product-info .reset_variations {
     margin-top: 16px;
     color: var(--wp--preset--color--primary);
+}
+
+.product-info .woocommerce-variation-price {
+    margin-bottom: 16px;
 }
 
 .product-info .woocommerce-variation-price, .product-info .woocommerce-variation-availability,
@@ -289,6 +293,10 @@
 }
 
 .woocommerce-product-details__short-description {
+    display: none;
+}
+
+.button-direction {
     display: none;
 }
 

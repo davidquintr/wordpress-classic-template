@@ -103,6 +103,45 @@ get_header('shop'); ?>
 				?>
 			</div>
 
+			<?php
+			if ( $product->is_type( 'variable' ) ) {
+				$variations = $product->get_available_variations();
+				
+				if ( ! empty( $variations ) ) {
+					foreach ( $variations as $variation ) {
+						$variation_id = $variation['variation_id'];
+						$variation_obj = wc_get_product( $variation_id );
+						$variation_slug = $variation_obj->get_slug(); // Obtener el slug de la variación
+
+						// Obtener imágenes de la variación
+						$variation_images = array();
+
+						// Imagen principal de la variación
+						$main_variation_image_id = $variation_obj->get_image_id();
+						if ( $main_variation_image_id ) {
+							$variation_images[] = wp_get_attachment_url( $main_variation_image_id );
+						}
+
+						// Imágenes de la galería de la variación (si tiene)
+						$gallery_image_ids = $variation_obj->get_gallery_image_ids();
+						if ( ! empty( $gallery_image_ids ) ) {
+							foreach ( $gallery_image_ids as $gallery_image_id ) {
+								$variation_images[] = wp_get_attachment_url( $gallery_image_id );
+							}
+						}
+
+						// Convertir el array de imágenes a una cadena separada por comas
+						$variation_images_str = implode( ',', $variation_images );
+						?>
+						
+						<input type="hidden" class="images-variants" id="<?php echo esc_attr( $variation_slug ); ?>" value="<?php echo esc_attr( $variation_images_str ); ?>">
+						
+						<?php
+					}
+				}
+			}
+			?>
+
 		</div>
 
 	</article>
