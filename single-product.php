@@ -5,15 +5,6 @@ if (!defined('ABSPATH')) {
 
 get_header('shop'); ?>
 
-<?php
-/**
- * woocommerce_before_main_content hook.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- */
-?>
-
 <?php while (have_posts()): ?>
 	<?php the_post(); ?>
 
@@ -29,71 +20,13 @@ get_header('shop'); ?>
 	<article id="product-<?php the_ID(); ?>" <?php wc_product_class('alignwide ', $product); ?>>
 
 		<div class="product-inner">
-			<!-- Imprime la imagen principal del producto -->
+			<!-- Usa la galería de imágenes nativa de WooCommerce -->
 			<div class="product-image">
 				<?php
-				$images = array();
-				$main_image_id = get_post_thumbnail_id($product->get_id());
-				$main_image_url = wp_get_attachment_url($main_image_id);
-
-				if ($main_image_url) {
-					array_push($images, array(
-						'url' => $main_image_url,
-						'alt' => get_post_meta($main_image_id, '_wp_attachment_image_alt', true),
-						'title' => get_the_title($main_image_id),
-					)
-					);
-				}
-
-				$attachment_ids = $product->get_gallery_image_ids();
-				if (!empty($attachment_ids)) {
-					foreach ($attachment_ids as $attachment_id) {
-						$image_url = wp_get_attachment_url($attachment_id);
-						array_push($images, array(
-							'url' => $image_url,
-							'alt' => get_post_meta($attachment_id, '_wp_attachment_image_alt', true),
-							'title' => get_the_title($attachment_id),
-						)
-						);
-					}
-				}
+				// WooCommerce renderiza automáticamente el visor y las imágenes
+				woocommerce_show_product_images();
 				?>
-				<ul class="images-lateral">
-					<?php
-					$default_image = get_template_directory_uri() . '/assets/images/product-no-icon.png';
-					if (count($images) < 1) {
-						array_push($images, array(
-							'url' => $default_image,
-							'alt' => 'Default product image',
-							'title' => 'No image available',
-						)
-						);
-					}
-
-					foreach ($images as $image):
-						?>
-						<li class="image-shop-item">
-							<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"
-								title="<?php echo esc_attr($image['title']); ?>" />
-						</li>
-						<?php
-					endforeach;
-					?>
-				</ul>
-				<button class="button-direction left">
-					<i class="fa-solid fa-angle-left"></i>
-				</button>
-				<picture class="main-image">
-					<img class="showcase-shop-image" src="<?php echo esc_url($images[0]['url']); ?>"
-						alt="<?php echo esc_attr($images[0]['alt']); ?>"
-						title="<?php echo esc_attr($images[0]['title']); ?>" />
-				</picture>
-				<button class="button-direction right">
-					<i class="fa-solid fa-angle-right"></i>
-				</button>
 			</div>
-
-
 
 			<div class="product-info">
 				<?php
@@ -104,37 +37,53 @@ get_header('shop'); ?>
 			</div>
 
 			<?php
-			if ( $product->is_type( 'variable' ) ) {
+			if ($product->is_type('variable')) {
 				$variations = $product->get_available_variations();
-				
-				if ( ! empty( $variations ) ) {
-					foreach ( $variations as $variation ) {
+
+				if (!empty($variations)) {
+					foreach ($variations as $variation) {
 						$variation_id = $variation['variation_id'];
-						$variation_obj = wc_get_product( $variation_id );
-						$variation_slug = $variation_obj->get_slug(); // Obtener el slug de la variación
+						$variation_obj = wc_get_product($variation_id);
+
+						// Obtener los atributos de la variación (ejemplo: color, talla, etc.)
+						$attributes = $variation['attributes'];
+
+						// Aquí puedes obtener el valor del atributo color (si existe)
+						$color = isset($attributes['attribute_pa_color']) ? $attributes['attribute_pa_color'] : '';
+
+						// Aquí puedes obtener el valor del atributo size (si existe)
+						$size = isset($attributes['attribute_pa_size']) ? $attributes['attribute_pa_size'] : '';
+
+						// Crear un slug combinado de color y size (u otros atributos)
+						$attribute_slug = trim($color . '-' . $size, '-'); // Combina los valores de color y talla
+
+						// Si no se encuentra ningún atributo relevante, puedes saltar esta iteración
+						if (empty($attribute_slug)) {
+							continue;
+						}
 
 						// Obtener imágenes de la variación
 						$variation_images = array();
 
 						// Imagen principal de la variación
 						$main_variation_image_id = $variation_obj->get_image_id();
-						if ( $main_variation_image_id ) {
-							$variation_images[] = wp_get_attachment_url( $main_variation_image_id );
+						if ($main_variation_image_id) {
+							$variation_images[] = wp_get_attachment_url($main_variation_image_id);
 						}
 
 						// Imágenes de la galería de la variación (si tiene)
 						$gallery_image_ids = $variation_obj->get_gallery_image_ids();
-						if ( ! empty( $gallery_image_ids ) ) {
-							foreach ( $gallery_image_ids as $gallery_image_id ) {
-								$variation_images[] = wp_get_attachment_url( $gallery_image_id );
+						if (!empty($gallery_image_ids)) {
+							foreach ($gallery_image_ids as $gallery_image_id) {
+								$variation_images[] = wp_get_attachment_url($gallery_image_id);
 							}
 						}
 
 						// Convertir el array de imágenes a una cadena separada por comas
-						$variation_images_str = implode( ',', $variation_images );
+						$variation_images_str = implode(',', $variation_images);
 						?>
 						
-						<input type="hidden" class="images-variants" id="<?php echo esc_attr( $variation_slug ); ?>" value="<?php echo esc_attr( $variation_images_str ); ?>">
+						<input type="hidden" class="images-variants" id="<?php echo esc_attr($attribute_slug); ?>" value="<?php echo esc_attr($variation_images_str); ?>">
 						
 						<?php
 					}
@@ -158,7 +107,7 @@ get_header('shop'); ?>
 		<ul class="product-tabs">
 			<li class="product-tab-item active raw-text">
 				<?php echo do_shortcode($product->get_description()); ?>
-			</li>`
+			</li>
 			<li class="product-tab-item">
 				<div id="comments" class="comments-area">
 					<?php
@@ -206,8 +155,5 @@ get_header('shop'); ?>
 	?>
 
 <?php endwhile; // end of the loop. ?>
-
-<?php
-?>
 
 <?php get_footer('shop'); ?>

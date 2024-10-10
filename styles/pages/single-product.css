@@ -21,23 +21,35 @@
         width: 60px !important;
     }
 
-    .product-inner > .product-image {
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
-    }
+    .product-inner > .product-image  .zoomImg {
+        width: 480px !important;
+        height: 480px !important;
+    }   
 
 }
 
 .product-info .product-sku {
     font-family: var(--wp--preset--font-family--century-gothic);
 }
+@media screen and (min-width: 768px) {
+    .product-inner > .product-image  .zoomImg {
+        width: 960px !important;
+        height: 960px !important;
+    }    
+}
 
-.product-inner > .product-image {
-    position: relative;
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    gap: 16px;
-    align-items: center;
+.product-inner > .product-image  .rtwpvg-images {
+    max-width: 100% !important;
+    margin: auto;
+}
+
+.product-inner > .product-image  .rtwpvg-thumbnail-slider {
+    padding: 4px;
+}
+
+.product-inner > .product-image  .rtwpvg-container {
+    flex-direction: column-reverse !important;
+    gap: 16px !important;
 }
 
 .product-inner > .product-image > .images-lateral {
@@ -48,24 +60,28 @@
     margin: 0;
 }
 
-.product-inner > .product-image > .images-lateral > .image-shop-item {
-    cursor: pointer;
-    overflow: hidden;
-    border: 1px solid var(--wp--preset--color--gray-100);
-    list-style: none;
-    padding: 0;
+.product-inner > .product-image .swiper-wrapper {
+    gap: 16px !important;
 }
 
-.product-inner > .product-image > .images-lateral > .image-shop-item > img {
+.product-inner > .product-image .rtwpvg-thumbnail-image > img, 
+.product-inner > .product-image .rtwpvg-thumbnail-image > div > img {
     transition: all 0.2s;
 }
 
-.product-inner > .product-image > .images-lateral > .image-shop-item:hover > img {
+.product-inner > .product-image .rtwpvg-thumbnail-image:hover > img,
+.product-inner > .product-image .rtwpvg-thumbnail-image:hover > div > img {
     transform: scale(1.2);
 }
 
-.product-inner > .product-image > .images-lateral > .image-shop-item:active > img {
-    opacity: 0.8;
+.product-inner > .product-image .rtwpvg-thumbnail-image {
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--wp--preset--color--gray-100) !important ;
+    list-style: none;
+    padding: 0;
+    transition: all 0.2s;
+    opacity: 1 !important;
 }
 
 .product-inner > .product-image > .images-lateral > .image-shop-item,
