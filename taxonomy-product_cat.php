@@ -65,7 +65,7 @@ get_header();
 
                     echo '<ul class="child-categories">';
                     foreach ($child_subcategories as $child) {
-                        echo '<li><a href="#' . parse_to_slug($child->name) . '" class="subcategory">' . esc_html($child->name) . '</a></li>';
+                        echo '<li><a href="#' . parse_to_slug($child->name) . '" class="subcategory button-redirect">' . esc_html($child->name) . '</a></li>';
                     }
                     echo '</ul>';
 

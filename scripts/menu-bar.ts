@@ -6,3 +6,13 @@ if(menuButton && productSortPanel) {
         productSortPanel.classList.toggle("active");
     })
 }
+
+const buttonsMenu = document.querySelectorAll(".subcategory.button-redirect") as NodeListOf<HTMLAnchorElement>;
+
+if(buttonsMenu){ 
+    buttonsMenu.forEach(el => {
+        el.addEventListener("click", () => {
+            productSortPanel.classList.toggle("active");
+        })
+    })
+}
