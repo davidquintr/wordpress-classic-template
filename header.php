@@ -78,14 +78,14 @@ $user_info = get_userdata($user_id);
                     <div class="user-control-buttons">
                         <?php if (is_user_logged_in()): ?>
                             <a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">
-                                <?php _e('My Account', 'text-domain'); ?>
+                                <?php _e('My Account', 'gabsters-domain'); ?>
                             </a>
                             <a href="<?php echo wp_logout_url(home_url()); ?>">
-                                <?php _e('Logout', 'text-domain'); ?>
+                                <?php _e('Logout', 'gabsters-domain'); ?>
                             </a>
                         <? else: ?>
                             <a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">
-                                <?php _e('Sign In', 'text-domain'); ?>
+                                <?php _e('Sign In', 'gabsters-domain'); ?>
                             </a>
                         <?php endif; ?>
                     </div>

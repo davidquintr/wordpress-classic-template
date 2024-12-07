@@ -31,7 +31,7 @@ get_header();
             ?>
         </div>
     <?php else: ?>
-        <p class="no-results"><?php _e('No results found.', 'textdomain'); ?></p>
+        <p class="no-results"><?php _e('No results found.', 'gabsters-domain'); ?></p>
     <?php endif; ?>
 
 </article>

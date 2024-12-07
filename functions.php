@@ -82,4 +82,74 @@ function filter_search_results($query) {
 add_action('pre_get_posts', 'filter_search_results');
 
 
+
+// Redirección personalizada solo para la página de registro
+function redirect_register_page() {
+    // Detectar si el usuario intenta registrarse a través de `wp-login.php?action=register`
+    if (isset($_GET['action']) && $_GET['action'] === 'register' && !is_user_logged_in()) {
+        wp_redirect(site_url('/register'));
+        exit;
+    }
+}
+add_action('login_form_register', 'redirect_register_page');
+
+// Manejo del registro personalizado
+function handle_custom_registration() {
+    if (isset($_POST['register'])) {
+        $errors = [];
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+        $user_login = sanitize_user($_POST['user_login']);
+        $user_email = sanitize_email($_POST['user_email']);
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        if (empty($first_name) || empty($last_name) || empty($user_login) || empty($user_email) || empty($password) || empty($confirm_password)) {
+            $errors[] = __('All fields are required.', 'gabsters-domain');
+        }
+        if (!is_email($user_email)) {
+            $errors[] = __('Invalid email address.', 'gabsters-domain');
+        }
+        if (username_exists($user_login)) {
+            $errors[] = __('Username already exists.', 'gabsters-domain');
+        }
+        if (email_exists($user_email)) {
+            $errors[] = __('Email is already registered.', 'gabsters-domain');
+        }
+        if ($password !== $confirm_password) {
+            $errors[] = __('Passwords do not match.', 'gabsters-domain');
+        }
+
+        if (empty($errors)) {
+            $user_id = wp_create_user($user_login, $password, $user_email);
+            if (!is_wp_error($user_id)) {
+                update_user_meta($user_id, 'first_name', $first_name);
+                update_user_meta($user_id, 'last_name', $last_name);
+                wp_redirect(site_url('/login?registered=1'));
+                exit;
+            } else {
+                $errors[] = __('An error occurred while creating your account. Please try again.', 'gabsters-domain');
+            }
+        }
+
+        global $registration_errors;
+        $registration_errors = $errors;
+    }
+}
+add_action('init', 'handle_custom_registration');
+
+// Redirección personalizada después de iniciar sesión
+function custom_login_redirect($redirect_to, $request, $user) {
+    if (isset($user->roles) && is_array($user->roles)) {
+        if (in_array('administrator', $user->roles)) {
+            return admin_url();
+        } else {
+            return site_url('/');
+        }
+    }
+    return $redirect_to;
+}
+add_filter('login_redirect', 'custom_login_redirect', 10, 3);
+
+
 ?>
