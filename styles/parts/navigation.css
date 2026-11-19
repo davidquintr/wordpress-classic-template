@@ -1,0 +1,45 @@
+/*
+ * Part: fixed bottom navigation (footer.php).
+ * Items are .button-medium (components/button.css). Labels are hidden on
+ * mobile, where only the icons show.
+ */
+
+.site-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100vw;
+    padding: 16px;
+    background-image: linear-gradient(
+        to top,
+        color-mix(in oklab, var(--color-alternative-400) 75%, transparent),
+        color-mix(in oklab, var(--color-primary-100) 0%, transparent)
+    );
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.site-navigation-items {
+    display: contents;
+}
+
+.site-navigation .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.site-navigation .button-label {
+    display: none;
+    font-size: 20px;
+    line-height: 1;
+}
+
+@media (min-width: 640px) {
+    .site-navigation .button-label {
+        display: block;
+    }
+}

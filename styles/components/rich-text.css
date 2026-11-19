@@ -1,0 +1,131 @@
+/*
+ * Component: rich text (.rich-text), for HTML coming from the editor or
+ * ACF WYSIWYG fields. Same spacing as Tailwind Typography ("prose") used
+ * by the original site. Blocks adjust paragraph size on top of this.
+ *
+ * Difference from the original: links and headings inherit the text color
+ * (the original used Tailwind's dark defaults, unreadable on this bg).
+ */
+
+.rich-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-white);
+}
+
+.rich-text :where(p, ul, ol, dl) {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+}
+
+.rich-text :where(a) {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.rich-text :where(strong) {
+    color: var(--color-primary-50);
+    font-weight: 600;
+}
+
+.rich-text :where(a strong, blockquote strong) {
+    color: inherit;
+}
+
+.rich-text :where(ul) {
+    padding-inline-start: 1.625em;
+    list-style-type: disc;
+}
+
+.rich-text :where(ol) {
+    padding-inline-start: 1.625em;
+    list-style-type: decimal;
+}
+
+.rich-text :where(li) {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-inline-start: 0.375em;
+}
+
+.rich-text :where(ul ul, ul ol, ol ul, ol ol) {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+.rich-text :where(h2, h3, h4) {
+    color: inherit;
+    font-family: var(--font-heading);
+}
+
+.rich-text :where(h2) {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1.33333;
+}
+
+.rich-text :where(h3) {
+    margin-top: 1.6em;
+    margin-bottom: 0.6em;
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.rich-text :where(h4) {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.rich-text :where(blockquote) {
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    padding-inline-start: 1em;
+    border-inline-start: 0.25rem solid var(--color-primary-300);
+    font-style: italic;
+    font-weight: 500;
+}
+
+.rich-text :where(hr) {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border-top: 1px solid var(--color-primary-300);
+}
+
+.rich-text :where(img, figure, video) {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.rich-text :where(code) {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.rich-text :where(pre) {
+    margin-top: 1.71429em;
+    margin-bottom: 1.71429em;
+    padding: 0.857143em 1.14286em;
+    border-radius: 0.375rem;
+    background-color: rgb(0 0 0 / 0.5);
+    font-size: 0.875em;
+    line-height: 1.71429;
+    overflow-x: auto;
+}
+
+.rich-text :where(hr, h2, h3, h4) + * {
+    margin-top: 0;
+}
+
+.rich-text > :first-child {
+    margin-top: 0;
+}
+
+.rich-text > :last-child {
+    margin-bottom: 0;
+}

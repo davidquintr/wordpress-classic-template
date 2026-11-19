@@ -1,349 +1,139 @@
-:root {
-    --header-height: 64px;
-}
+/*
+ * Part: site header (header.php).
+ * Large on the front page (.site-header-home), compact elsewhere.
+ *
+ * - site-header-brand: portrait and identity, linking to home.
+ * - site-header-social: social links, with a warm glow behind the icon
+ *   on hover (::before).
+ */
 
-.page-header {
-    transition: border-bottom-color 0.2s;
-    background-color: var(--wp--preset--color--white);
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    border-bottom: 1px solid var(--wp--preset--color--white);
-}
-
-.page-header.on-scroll {
-    border-bottom-color: var(--wp--preset--color--gray-100);
-}
-
-.page-header > .inner-content {
-    position: relative;
-    padding-inline: 16px;
-    padding-block: 8px;
-    max-width: var(--wp--style--global--wide-size);
-    margin-inline: auto;
+.site-header {
     display: flex;
-    justify-content: space-between;
-    min-height: var(--header-height);
-    align-items: center;
-}
-
-.page-header .menu-items{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 48px;
     flex-wrap: wrap;
-}
-
-.page-header .menu-items li, 
-.page-header .menu-items li {
-    position: relative;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.page-header .menu-items li > a {
-    transition: color 0.2s;
-    color: var(--wp--preset--color--black);
-    font-size: var(--wp--preset--font-size--regular);
-    font-family: var(--wp--preset--font-family--inter);
-    text-decoration: none;
-}
-
-.page-header .menu-items li:hover > a,
-.page-header .menu-items li.current-page > a{
-    color: var(--wp--preset--color--primary) ;
-}
-
-.page-header .menu-items li::after {
-    transform-origin: center;
-    transition: all 0.2s;
-    content: "";
-    width: 0;
-    border-radius: 9999px;
-    height: 2px;
-    background: var(--wp--preset--color--primary) !important;
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translate(-50%);
-}
-
-.page-header .menu-items li:hover::after,
-.page-header .menu-items li.current-page::after {
-    width: 100%;
-}
-
-.header-button.navigation > i{
-    font-size: xx-large;
-}
-
-.header-button.navigation {
-    display: none;
-}
-
-.header-button.navigation:active {
-    transform: scaleX(0.9);
-}
-
-@media screen and (max-width: 1024px) {
-    :root {
-        --header-height: 52px;
-    }
-
-    .header-button.navigation {
-        display: block;
-    }
-
-    .page-header > .inner-content {
-        position: relative;
-    }
-
-    .menu-items:not(.footer):not(.active) {
-        transform: translateY(calc(-100% - var(--header-height))) !important;
-        pointer-events: none;
-    }
-
-    .menu-items.active {
-        transform: translateY(0);
-    }
-
-    .menu-items:not(.footer) {
-        border-bottom: 1px solid var(--wp--preset--color--gray-100);
-        transition: transform 0.2s;
-        background-color: white;
-        align-items: center;
-        width: 100%;
-        flex-direction: column;
-        position: absolute;
-        top: 0;
-        left: 0;
-        gap: 32px;
-        padding-top: 16px;
-        padding-bottom: 32px;
-        transform: translateY(var(--header-height));
-    }
-
-    .page-identity > .name {
-        display: none;
-    }
-
-    .control-buttons > .search-controls.active  {
-        position: absolute;
-        right: 0;
-        z-index: 100;
-        background: white;
-        width: calc(100% - 16px);
-        box-sizing: border-box;
-        margin-inline: 8px;
-    }
-}
-
-.page-identity {
-    z-index: 10;
-    text-decoration: none;
-    display: flex;
-    gap: 8px;
-}
-
-.page-identity > .icon {
-    width: auto;
-    height: 36px;
-}
-
-.page-identity > .name {
-    text-transform: uppercase;
-    color: var(--wp--preset--color--primary);
-    text-decoration: none;
-    font-size: 36px;
-    margin: 0;
-}
-
-.header-button {
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-    background: none;
-    width: 48px;
-    height: 48px;
-}
-
-.header-button.gray-color {
-    color: var(--wp--preset--color--gray-200);
-}
-
-.header-button.orange-color {
-    color: var(--wp--preset--color--primary);
-}
-
-.header-button > i {
-    font-size: 24px;
-}
-
-.header-button-img {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    border: 1px solid var(--wp--preset--color--gray-200);
-    color: var(--wp--preset--color--gray-200);
-    border-radius: 9999px;
-    background: none;
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    overflow: hidden;
-}
-
-.header-button-img.image-only{
-    overflow: unset;
-    align-items: center;
-    border: none;
-}
-
-.header-button-img.image-only > img {
-    height: 36px;
-}
-
-.header-button-img > img {
-    height: 24px;
-}
-
-.header-button-img > img.full-height {
-    height: 100%;
-}
-
-.control-buttons {
-    z-index: 10;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-}
-
-.control-buttons > .search-controls {
-    display: flex;
-    align-items: center;
-}
-
-.control-buttons > .search-controls.active {
-    border-radius: 9999px;
-    overflow: hidden;
-    border: 1px solid var(--wp--preset--color--gray-100);
-    padding: 8px;
-
-}
-
-.control-buttons > .search-controls:not(.active) > form {
-    display: none;
-}
-
-.control-buttons > .search-controls > form {
-    flex: 1;
-    height: 100%;
-}
-
-.control-buttons > .search-controls > form > input {
-width: 100%;
-    border-radius: 16px;
-    border: none;
-    font-family: var(--wp--preset--font-family--inter);
-    font-size: x-large;
-    padding: 8px;
-}
-
-.control-buttons > .search-controls > form > input:focus-visible {
-    outline: none;
-}
-
-.page-header .profile-options:not(.active){
-    height: 0;
-}
-
-.page-header .profile-options {
-    overflow: hidden;
-    transition: all 0.2s;
-    height: 120px;
-    gap: 8px;
-    position: absolute;
-    right: 8px;
-    display: flex;
-    flex-direction: column;
-    max-width: 360px;
-    width: 100%;
-    background-color: var(--wp--preset--color--white);
-}
-
-.page-header .profile-options > .user-info {
-    padding: 16px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    border: 1px solid var(--wp--preset--color--gray-100);
-    height: 100%;
-    border-top: none;
-    }
-
-.page-header .profile-options > .user-info > .user-image > img {
-    height: 100%;
-}
-
-.page-header .profile-options > .user-info > .user-image {
-    border-radius: 9999px;
-    overflow: hidden;
-    border: 1px solid var(--wp--preset--color--gray-100);
-    aspect-ratio: 1;
-    height: 64px;
-    width: auto;
-}
-
-.page-header .profile-options > .user-info > .user-image > img:not(.full-height) {
-    padding: 16px;
-    box-sizing: border-box;
-}
-
-.page-header .profile-options > .user-info > .info-details {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-    flex: 1;
     justify-content: space-between;
-    margin-top: 8px;
+    gap: 32px;
+    width: 100%;
+    max-width: var(--wide-max-width);
+    margin-inline: auto;
+    padding: 16px var(--gutter) 0;
+    transition: padding 500ms var(--ease-default);
 }
 
-.page-header .profile-options > .user-info > .info-details .user-control-buttons {
+.site-header-home {
+    padding-top: 32px;
+}
+
+.site-header-brand {
     display: flex;
-    gap: 8px;
-}
-.page-header .profile-options > .user-info > .info-details .user-control-buttons > a {
-    border-radius: 9999px;
-    color: var(--wp--preset--color--black);
-    font-family: var(--wp--preset--font-family--inter);
-    text-decoration: none;
-    border: 1px solid var(--wp--preset--color--gray-100);
-    text-align: center;
-    padding: 8px;
-    flex: 1;
-    transition: all 0.2s;
-    font-size: var(--wp--preset--font-size--regular);
+    flex-direction: column;
+    gap: 16px;
 }
 
-.page-header .profile-options > .user-info > .info-details .user-control-buttons > a:hover {
-    background-color: var(--wp--preset--color--gray-100);
+.site-header-portrait {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    aspect-ratio: 1;
 }
 
-.page-header .profile-options > .user-info > .info-details .user-control-buttons > a:active {
-    transform: scale(0.95);
+.site-header-avatar {
+    width: 48px;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    transition: all 500ms var(--ease-default);
 }
 
-.page-header .profile-options > .user-info > .info-details .username {
-    font-weight: bold;
-    font-family: var(--wp--preset--font-family--inter);
-    font-size: var(--wp--preset--font-size--regular);
+.site-header-home .site-header-avatar {
+    width: 84px;
 }
 
-@media screen and (max-width: 768px) {
-    .page-header .profile-options {
-        right: 0;
+.site-header-identity {
+    display: flex;
+    flex-direction: column;
+}
+
+.site-header-name {
+    color: var(--color-white);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.site-header-role {
+    color: var(--color-primary-50);
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.site-header-social {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.social-link {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    color: var(--color-secondary-100);
+    font-size: 30px;
+    line-height: 36px;
+    transition: all var(--duration-fast) var(--ease-default);
+}
+
+.social-link .icon {
+    width: 1em;
+    height: 1em;
+}
+
+.social-link::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -40;
+    display: block;
+    width: 24px;
+    height: 24px;
+    translate: -50% -50%;
+    border-radius: var(--radius-full);
+    background-color: var(--color-secondary-100);
+    opacity: 0;
+    filter: blur(24px);
+    pointer-events: none;
+    transition: opacity 500ms var(--ease-default);
+}
+
+.social-link:hover {
+    translate: 0 -4px;
+    rotate: 2deg;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+@media (min-width: 640px) {
+    .site-header {
+        flex-wrap: nowrap;
+        padding-top: 32px;
+    }
+
+    .site-header-home {
+        padding-top: 64px;
+    }
+
+    .site-header-brand {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .site-header-name {
+        font-size: 36px;
     }
 }

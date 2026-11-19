@@ -1,0 +1,113 @@
+/*
+ * Component: project card, compact version
+ * (template-parts/components/project-card.php).
+ *
+ * - project-card-glow: soft glow behind the card on hover.
+ * - project-card-icon: white tile with the project logo, fading out at
+ *   the bottom.
+ * - project-card-shine: light spot in the middle of the card.
+ */
+
+.project-card {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.project-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -40;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-lg);
+    background-color: color-mix(in oklab, var(--color-primary-50) 10%, transparent);
+    opacity: 0;
+    filter: blur(40px);
+    transition: all var(--duration-fast) var(--ease-default);
+}
+
+.project-card:hover .project-card-glow {
+    opacity: 1;
+}
+
+.project-card-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 12px;
+    border: 1px solid color-mix(in oklab, var(--color-primary-400) 80%, transparent);
+    border-radius: var(--radius-md);
+    transform-origin: bottom right;
+    transition: all 300ms var(--ease-out);
+}
+
+.project-card:hover .project-card-box {
+    translate: 0 -4px;
+    rotate: 1deg;
+    background-color: color-mix(in oklab, var(--color-primary-200) 10%, transparent);
+    backdrop-filter: blur(2px);
+}
+
+.project-card:active .project-card-box {
+    transform: perspective(1000px) rotateX(4deg) rotateY(2deg);
+}
+
+.project-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white);
+    box-shadow: 3px 3px 24px 0 var(--color-primary-400);
+    -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 10%, transparent 100%);
+}
+
+.project-card-title {
+    margin-top: -16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+}
+
+.project-card-shine {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    translate: -50% 0;
+    border-radius: var(--radius-full);
+    background-color: rgb(255 255 255 / 0.1);
+    filter: blur(24px);
+}
+
+@media (min-width: 640px) {
+    .project-card-title {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-card-title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}

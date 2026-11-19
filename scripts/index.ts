@@ -1,28 +1,5 @@
-/* Styles */
-import "../styles/fonts.css";
-import "../styles/basic.css";
-import "../styles/parts/header.css";
-import "../styles/parts/footer.css";
-import "../styles/parts/comments.css"
-import "../styles/patterns/custom-link.css";
-import "../styles/patterns/separator-high.css";
-import "../styles/patterns/separator-tiny.css"
-import "../styles/patterns/separator-medium.css"
-import "../styles/template-part/product-item.css"
-import "../styles/pages/home.css"
-import "../styles/pages/shop.css"
-import "../styles/pages/cart.css"
-import "../styles/pages/product-cat.css"
-import "../styles/pages/single-product.css"
-import "../styles/pages/search.css"
-import "../styles/pages/my-account.css"
-
-/* Scripts */
-import "./navigation"
-import "./search-header"
-import "./scroll"
-import "./image-switch"
-import "./product-tab"
-import './user-info'
-import './filter-spinner'
-import './menu-bar'
+/*
+ * Script entry point, bundled by webpack into dist/script.js.
+ * Import one module per feature, e.g. import "./reveal";
+ */
+export {};

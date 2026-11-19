@@ -1,9 +1,17 @@
 <?php
-    get_header();
-?>
+/**
+ * Front page. Renders the ACF blocks of the page set as homepage.
+ * Styles: styles/templates/front-page.css
+ */
 
-<?php the_content() ?>
+get_header();
 
-<?php
-    get_footer();
-?>
+while (have_posts()) :
+    the_post();
+
+    if (!wordpress_classic_template_render_blocks()) : ?>
+        <article class="template-content rich-text"><?php the_content(); ?></article>
+    <?php endif;
+endwhile;
+
+get_footer();

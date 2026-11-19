@@ -1,0 +1,75 @@
+/*
+ * Component: button (wordpress_classic_template_button()).
+ *
+ * <a class="button button-small|button-medium [button-fly] [is-active]">
+ *     <span class="button-inner">icon + label</span>
+ * </a>
+ *
+ * - Sizes: button-small, button-medium.
+ * - States: hover and active change the background; button-fly lifts and
+ *   tilts on hover; is-active marks the current page (not clickable,
+ *   keeps the hover look).
+ * - .link-group: buttons of a single link (download + label).
+ */
+
+.button {
+    display: flex;
+    cursor: pointer;
+}
+
+.button-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    color: var(--color-white);
+    background-color: var(--color-primary-600);
+    transition: all var(--duration-fast) var(--ease-default);
+}
+
+.button .icon {
+    width: 1em;
+    height: 1em;
+}
+
+.button-small .button-inner {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.button-medium .button-inner {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.button:hover .button-inner {
+    background-color: color-mix(in oklab, var(--color-secondary-400) 50%, transparent);
+}
+
+.button:active .button-inner {
+    background-color: var(--color-primary-300);
+}
+
+.button-fly:hover .button-inner {
+    translate: 0 -4px;
+    rotate: 1deg;
+}
+
+.button.is-active {
+    cursor: default;
+}
+
+.button.is-active .button-inner {
+    background-color: color-mix(in oklab, var(--color-secondary-400) 50%, transparent);
+}
+
+.button-fly.is-active .button-inner {
+    translate: 0 -4px;
+    rotate: 1deg;
+}
+
+.link-group {
+    display: flex;
+    gap: 8px;
+}

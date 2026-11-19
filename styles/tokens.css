@@ -1,0 +1,58 @@
+/*
+ * Design tokens.
+ *
+ * Source of truth is theme.json (palette and font families), which
+ * WordPress prints as --wp--preset--* variables. These aliases give
+ * shorter names to use in the theme's CSS.
+ *
+ * Groups: colors (alternative, primary, secondary, neutrals), typography,
+ * background texture (path relative to dist/styles.css), layout, radius
+ * and motion.
+ * Breakpoints (reference only, CSS variables can't be used in media
+ * queries): sm 640px, md 768px, lg 1024px.
+ */
+
+:root {
+    --color-alternative-400: var(--wp--preset--color--alternative-400);
+    --color-alternative-600: var(--wp--preset--color--alternative-600);
+    --color-alternative-800: var(--wp--preset--color--alternative-800);
+
+    --color-primary-50: var(--wp--preset--color--primary-50);
+    --color-primary-100: var(--wp--preset--color--primary-100);
+    --color-primary-200: var(--wp--preset--color--primary-200);
+    --color-primary-300: var(--wp--preset--color--primary-300);
+    --color-primary-400: var(--wp--preset--color--primary-400);
+    --color-primary-500: var(--wp--preset--color--primary-500);
+    --color-primary-600: var(--wp--preset--color--primary-600);
+
+    --color-secondary-100: var(--wp--preset--color--secondary-100);
+    --color-secondary-200: var(--wp--preset--color--secondary-200);
+    --color-secondary-300: var(--wp--preset--color--secondary-300);
+    --color-secondary-400: var(--wp--preset--color--secondary-400);
+    --color-secondary-500: var(--wp--preset--color--secondary-500);
+
+    --color-white: #ffffff;
+    --color-neutral: #06050a;
+    --color-neutral-content: #f5f7fc;
+
+    --font-body: var(--wp--preset--font-family--poppins);
+    --font-heading: var(--wp--preset--font-family--roboto-slab);
+
+    --noisy-texture: url("../assets/images/noisy.webp");
+    --noisy-texture-size: 320px;
+
+    --wide-max-width: 1056px;
+    --gutter: 16px;
+    --section-gap: 48px;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --duration-fast: 150ms;
+
+}

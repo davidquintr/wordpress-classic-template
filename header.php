@@ -1,96 +1,86 @@
 <?php
-$custom_logo_id = get_theme_mod('custom_logo');
-$image_url = wp_get_attachment_image_url($custom_logo_id, 'full');
-$uri = get_template_directory_uri();
+/**
+ * Site header: document head, background layers and the identity header.
+ * Styles: styles/parts/header.css, styles/parts/background.css
+ *
+ * Data: ACF options page "Global" (avatar, identity, social_medias).
+ * The header is large on the front page and compact everywhere else.
+ * The avatar is served as AVIF/WebP crops at its displayed size (84px on
+ * the front page, 48px elsewhere) plus 2x for retina screens.
+ */
 
-$user_id = get_current_user_id();
-$avatar_url = get_avatar_url($user_id);
-$default_avatar_url = get_avatar_url(0);
+$is_home  = is_front_page();
+$avatar   = wordpress_classic_template_field('avatar', 'option');
+$identity = wordpress_classic_template_field('identity', 'option');
+$socials  = wordpress_classic_template_field('social_medias', 'option');
+$networks = wordpress_classic_template_social_networks();
 
-$user_info = get_userdata($user_id);
-
+$name = !empty($identity['name']) ? $identity['name'] : get_bloginfo('name');
+$role = !empty($identity['role']) ? $identity['role'] : get_bloginfo('description');
 ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php
-    wp_head();
-    ?>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#121B32">
+    <meta name="color-scheme" content="dark">
+    <?php wp_head(); ?>
 </head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
 
-<body>
-    <header class="page-header on-scroll">
-        <div class="inner-content">
-            <a href="/" class="page-identity">
-                <img class="icon" src="<?php echo esc_url($image_url); ?>" alt="logo">
-                <h1 class="name has-tw-cent-mt-std-font-family">
-                    <?php echo bloginfo('name'); ?>
-                </h1>
-            </a>
+<header class="site-header<?php echo $is_home ? ' site-header-home' : ''; ?>">
+    <a class="site-header-brand" href="<?php echo esc_url(home_url('/')); ?>">
+        <?php if (!empty($avatar['ID'])) : ?>
+            <div class="site-header-portrait">
+                <?php
+                $avatar_width = $is_home ? 84 : 48;
+                echo wordpress_classic_template_picture($avatar['ID'], array(
+                    'widths' => array($avatar_width, $avatar_width * 2),
+                    'sizes'  => $avatar_width . 'px',
+                    'width'  => $avatar_width,
+                    'class'  => 'site-header-avatar',
+                    'alt'    => $avatar['alt'] ? $avatar['alt'] : $name,
+                    'eager'  => true,
+                ));
+                ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if ($is_home) : ?>
+            <div class="site-header-identity" data-nosnippet>
+                <span class="site-header-name"><?php echo esc_html($name); ?></span>
+                <?php if ($role) : ?>
+                    <span class="site-header-role"><?php echo esc_html($role); ?></span>
+                <?php endif; ?>
+            </div>
+        <?php else : ?>
+            <span class="screen-reader-text"><?php echo esc_html($name); ?></span>
+        <?php endif; ?>
+    </a>
+
+    <?php if (!empty($socials)) : ?>
+        <ul class="site-header-social">
             <?php
-            wp_nav_menu(
-                array(
-                    'menu' => 'primary',
-                    'theme_location' => 'primary',
-                    'container' => '',
-                    'items_wrap' => '<ul class="menu-items header">%3$s</ul>'
-                )
-            );
-            ?>
-            <div class="control-buttons">
-                <div class="search-controls">
-                    <form id="search-header">
-                        <input name="s" type="search" placeholder="Search">
-                    </form>
-                    <button aria-label="Search" class="header-button gray-color search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-                <button aria-label="User Information" class="header-button-img user">
-                    <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
-                </button>
-                <a aria-label="Cart" href="<?php echo wc_get_cart_url() ?>" class="header-button-img image-only">
-                    <img src="<?php echo $uri . "/assets/svg/bag.svg" ?>" alt="cart">
-                </a>
-                <button aria-label="Navigation" class="header-button navigation">
-                    <i class="fa-solid fa-bars-staggered"></i>
-                </button>
-            </div>
-        </div>
-        <div class="profile-options">
-            <div class="user-info">
-                <picture class="user-image">
-                    <img class="full-height" src="<?php echo $avatar_url ?>" alt="Avatar">
-                </picture>
-                <div class="info-details">
-                    <?php if (is_user_logged_in()): ?>
-                        <?php if (isset($user_info->first_name)): ?>
-                            <span class="username"><?php echo $user_info->first_name . ' ' . $user_info->last_name ?></span>
-                        <?php else: ?>
-                            <p class="username"><?php echo $user_info->display_name ?></p>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <span class="username">Guest User</span>
-                    <?php endif; ?>
-                    <div class="user-control-buttons">
-                        <?php if (is_user_logged_in()): ?>
-                            <a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">
-                                <?php _e('My Account', 'gabsters-domain'); ?>
-                            </a>
-                            <a href="<?php echo wp_logout_url(home_url()); ?>">
-                                <?php _e('Logout', 'gabsters-domain'); ?>
-                            </a>
-                        <? else: ?>
-                            <a href="<?php echo esc_url(wc_get_page_permalink('myaccount')); ?>">
-                                <?php _e('Sign In', 'gabsters-domain'); ?>
-                            </a>
-                        <?php endif; ?>
+            foreach ($socials as $social) :
+                $media = isset($social['media']) ? $social['media'] : '';
+                if (empty($social['url']) || !isset($networks[$media])) {
+                    continue;
+                }
+                $network = $networks[$media];
+                $href    = ($media === 'email' ? 'mailto:' : '') . $social['url'];
+                ?>
+                <li class="social-link">
+                    <div class="tooltip" data-tip="<?php echo esc_attr($network['label']); ?>">
+                        <a href="<?php echo esc_url($href); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr($network['label']); ?>">
+                            <?php echo wordpress_classic_template_icon($network['icon']); ?>
+                        </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main class="wp-block-query is-layout-constrained wp-block-query-is-layout-constrained">
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</header>
+
+<main class="site-main">

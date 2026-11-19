@@ -1,0 +1,30 @@
+/* Block: Section Heading (template-parts/blocks/section-heading.php). */
+
+.block-section-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: var(--wide-max-width);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.block-section-heading-title {
+    color: var(--color-primary-50);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.block-section-heading-description :where(p) {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.block-section-heading-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}

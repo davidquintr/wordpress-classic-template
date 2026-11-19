@@ -1,63 +1,112 @@
+/*
+ * Base: reset, global element defaults and utilities.
+ *
+ * - Reset: equivalent to Tailwind's preflight used by the original site.
+ * - .picture (<picture> from wordpress_classic_template_picture()) uses
+ *   display: contents, so the layout comes from its <img>.
+ * - The body must NOT get a background or a z-index: the backdrop layers
+ *   in parts/background.css use negative z-index and would be hidden.
+ * - .site-main leaves room at the bottom for the fixed navigation.
+ * - .icon: inline SVG from wordpress_classic_template_icon(), sized by
+ *   font-size.
+ * - .screen-reader-text: accessible hidden text (WordPress convention).
+ */
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+ol, ul, menu {
+    list-style: none;
+}
+
+img, svg, video, canvas, iframe {
+    display: block;
+    vertical-align: middle;
+}
+
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+.picture {
+    display: contents;
+}
+
+button, input, select, textarea {
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+b, strong {
+    font-weight: bolder;
+}
+
 html {
+    height: 100%;
+    line-height: 1.5;
+    background-color: var(--color-alternative-800);
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+}
+
+html,
+body {
+    scrollbar-gutter: stable;
+    overflow-x: clip;
 }
 
 body {
-    background-color: var(--wp--preset--color--white);
+    position: relative;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    gap: var(--section-gap);
+    color: var(--color-white);
+    font-family: var(--font-body);
 }
 
-main {
+.site-main {
     flex: 1;
-    padding: 16px;
-    padding-bottom: 64px;
-    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+    padding-bottom: 136px;
 }
 
-ins {
-    text-decoration: none;
+.icon {
+    width: 1.25em;
+    height: 1.25em;
+    flex-shrink: 0;
 }
 
-.woocommerce-notices-wrapper, 
-.wp-block-woocommerce-checkout {
-    max-width: var(--wp--style--global--wide-size) !important;
-    font-family: var(--wp--preset--font-family--inter);
-    color: var(--wp--preset--color--black);
-}
-
-.woocommerce-notices-wrapper > .woocommerce-message {
-    background-color: var(--wp--preset--color--gray-100);
-
-}
-
-.woocommerce-notices-wrapper a{
-    color: var(--wp--preset--color--black);
-    text-decoration: none;
-}
-
-.woocommerce-notices-wrapper a:hover {
-    color: var(--wp--preset--color--primary);
-}
-
-
-@media screen and (max-width: 782px) {
-    .inverted-on-mobile {
-        flex-direction: column-reverse !important;
-    }   
-}
-
-.woocommerce-checkout-payment button {
-    background-color: var(--wp--preset--color--primary) !important;
-}
-
-.woocommerce-checkout-payment button:hover {
-    background-color: var(--wp--preset--color--primary-opaque) !important;
-}
-
-.woocommerce-terms-and-conditions-wrapper {
-	margin-bottom: 32px;
+.screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }

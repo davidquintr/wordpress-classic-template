@@ -1,144 +1,167 @@
 {
-	"$schema": "https://schemas.wp.org/wp/6.0/theme.json",
-	"patterns": ["two-cols-link"],
+	"$schema": "https://schemas.wp.org/wp/6.6/theme.json",
+	"version": 2,
 	"settings": {
-		"appearanceTools": true,
-		"layout": {
-			"contentSize": "640px",
-			"wideSize": "1280px"
-		},
-		"spacing": {
-			"units": [ "%", "px", "em", "rem", "vh", "vw" ]
-		},
 		"color": {
 			"defaultPalette": false,
+			"defaultGradients": false,
 			"palette": [
 				{
-					"color": "#f05d26",
-					"name": "Primary",
-					"slug": "primary"
+					"slug": "alternative-400",
+					"name": "Alternative 400",
+					"color": "#141e38"
 				},
 				{
-					"color": "#a53f20",
-					"name": "Primary Opaque",
-					"slug": "primary-opaque"
+					"slug": "alternative-600",
+					"name": "Alternative 600",
+					"color": "#121b32"
 				},
 				{
-					"color": "#eaeaea",
-					"name": "Gray 100",
-					"slug": "gray-100"
+					"slug": "alternative-800",
+					"name": "Alternative 800",
+					"color": "#000418"
 				},
 				{
-					"color": "#9E9E9E",
-					"name": "Gray 200",
-					"slug": "gray-200"
-				},
-				{	
-					"color": "#282828",
-					"name": "Gray 300",
-					"slug": "gray-300"
+					"slug": "primary-50",
+					"name": "Primary 50",
+					"color": "#b3ceff"
 				},
 				{
-					"color": "#000",
-					"name": "Black",
-					"slug": "black"
+					"slug": "primary-100",
+					"name": "Primary 100",
+					"color": "#516491"
 				},
 				{
-					"color": "#fff",
-					"name": "White",
-					"slug": "white"
+					"slug": "primary-200",
+					"name": "Primary 200",
+					"color": "#40517a"
+				},
+				{
+					"slug": "primary-300",
+					"name": "Primary 300",
+					"color": "#323f5e"
+				},
+				{
+					"slug": "primary-400",
+					"name": "Primary 400",
+					"color": "#2a354f"
+				},
+				{
+					"slug": "primary-500",
+					"name": "Primary 500",
+					"color": "#232b3d"
+				},
+				{
+					"slug": "primary-600",
+					"name": "Primary 600",
+					"color": "#06050a"
+				},
+				{
+					"slug": "secondary-100",
+					"name": "Secondary 100",
+					"color": "#fdd8a4"
+				},
+				{
+					"slug": "secondary-200",
+					"name": "Secondary 200",
+					"color": "#fdd8a4"
+				},
+				{
+					"slug": "secondary-300",
+					"name": "Secondary 300",
+					"color": "#d0978e"
+				},
+				{
+					"slug": "secondary-400",
+					"name": "Secondary 400",
+					"color": "#9d7381"
+				},
+				{
+					"slug": "secondary-500",
+					"name": "Secondary 500",
+					"color": "#231a39"
 				}
 			]
 		},
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "Century Gothic, sans-serif",
-					"name": "Century Gothic",
-					"slug": "century-gothic",
+					"name": "Poppins",
+					"slug": "poppins",
+					"fontFamily": "Poppins, system-ui, -apple-system, 'Segoe UI', sans-serif",
 					"fontFace": [
 						{
-							"fontFamily": "Century Gothic",
-							"fontWeight": "800",
-							"fontStyle": "bold",
-							"fontStretch": "normal"
+							"fontFamily": "Poppins",
+							"fontStyle": "normal",
+							"fontWeight": "400",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/poppins/poppins-latin-400-normal.woff2"
+							]
 						},
 						{
-							"fontFamily": "Century Gothic",
-							"fontWeight": "400",
+							"fontFamily": "Poppins",
 							"fontStyle": "normal",
-							"fontStretch": "normal"
+							"fontWeight": "500",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/poppins/poppins-latin-500-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "Poppins",
+							"fontStyle": "normal",
+							"fontWeight": "600",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/poppins/poppins-latin-600-normal.woff2"
+							]
+						},
+						{
+							"fontFamily": "Poppins",
+							"fontStyle": "normal",
+							"fontWeight": "700",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/poppins/poppins-latin-700-normal.woff2"
+							]
 						}
 					]
 				},
 				{
-					"fontFamily": "TwCenMTStd, sans-serif",
-					"name": "Tw Cen MT Std",
-					"slug": "tw-cent-mt-std",
+					"name": "Roboto Slab",
+					"slug": "roboto-slab",
+					"fontFamily": "'Roboto Slab', Georgia, 'Times New Roman', serif",
 					"fontFace": [
 						{
-							"fontFamily": "TwCenMTStd",
-							"fontWeight": "800",
-							"fontStyle": "bold",
-							"fontStretch": "normal"
-						},
-						{
-							"fontFamily": "TwCenMTStd",
-							"fontWeight": "400",
+							"fontFamily": "Roboto Slab",
 							"fontStyle": "normal",
-							"fontStretch": "normal"
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"unicodeRange": "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+							"src": [
+								"file:./assets/fonts/roboto-slab/roboto-slab-latin-wght-normal.woff2"
+							]
 						}
 					]
-				}	
-			],
-			"fontSizes": [
-				{
-				  "name": "Small",
-				  "size": "clamp(10px, 1.2vw, 12px)",
-				  "slug": "small"
-				},
-				{
-				  "name": "Regular",
-				  "size": "clamp(14px, 1.5vw, 16px)",
-				  "slug": "regular"
-				},
-				{
-				  "name": "Large",
-				  "size": "clamp(18px, 2vw, 24px)",
-				  "slug": "large"
-				},
-				{
-				  "name": "XL",
-				  "size": "clamp(20px, 2.5vw, 28px)",
-				  "slug": "x-large"
-				},
-				{
-				  "name": "2XL",
-				  "size": "clamp(24px, 3vw, 32px)",
-				  "slug": "xx-large"
-				},
-				{
-				  "name": "3XL",
-				  "size": "clamp(40px, 5vw, 52px)",
-				  "slug": "xxx-large"
-				},
-				{
-				  "name": "4XL",
-				  "size": "clamp(60px, 7vw, 84px)",
-				  "slug": "iv-large"
-				},
-				{
-				  "name": "5XL",
-				  "size": "clamp(70px, 8vw, 96px)",
-				  "slug": "v-large"
-				},
-				{
-				  "name": "6XL",
-				  "size": "clamp(90px, 8vw, 112px)",
-				  "slug": "v-large"
 				}
-			  ]
+			]
 		}
 	},
-	"version": 2
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--poppins)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--roboto-slab)"
+				}
+			}
+		}
+	}
 }

@@ -1,0 +1,11 @@
+/* Template: single.php (.template-single) */
+
+.template-single {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: var(--wide-max-width);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}

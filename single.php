@@ -1,27 +1,36 @@
 <?php
-    get_header();
-?>
+/**
+ * Single post (and custom post types without their own template).
+ * Styles: styles/templates/single.css
+ */
 
- <article class="container p-2">
-    <header class="container p-5">
-        <img class="w-full h-auto" src="<?php the_post_thumbnail_url() ?>">
-        <h2><?php echo get_the_date(); ?></h2>
-        <div class="tags">
-            <?php the_tags('<span class="tag"><i class="fa-solid fa-tag me-2"></i>','</span><span class="tag"><i class="fa-solid fa-tag me-2"></i>','</span>' ); ?>
-        </div>
-        <p><?php comments_number() ?></p>
-    </header>
+get_header();
 
-
-    <?php
-        the_content();
-
+while (have_posts()) :
+    the_post();
     ?>
+    <article <?php post_class('template-single'); ?>>
+        <header class="template-single-header">
+            <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('large', array('class' => 'template-single-image')); ?>
+            <?php endif; ?>
+            <h1 class="template-single-title"><?php the_title(); ?></h1>
+            <p class="template-single-date"><?php echo esc_html(get_the_date()); ?></p>
+            <?php
+            $tag_icon = wordpress_classic_template_icon('tag');
+            the_tags('<div class="template-single-tags"><span class="tag">' . $tag_icon, '</span><span class="tag">' . $tag_icon, '</span></div>');
+            ?>
+        </header>
 
+        <div class="template-single-content rich-text"><?php the_content(); ?></div>
+
+        <?php
+        if (comments_open() || get_comments_number()) {
+            comments_template();
+        }
+        ?>
+    </article>
     <?php
-        comments_template();
-    ?>
+endwhile;
 
-<?php
-    get_footer();
-?>
+get_footer();

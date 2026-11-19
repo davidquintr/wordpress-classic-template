@@ -1,9 +1,0 @@
-.separator-tiny{
-    height: 4px;
-    max-width: 60px;
-    border: none;
-    background-color: var(--wp--preset--color--primary);
-    margin-block: 12px;
-    width: 100%;
-    border-radius: 9999px;
-}

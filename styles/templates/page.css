@@ -1,0 +1,26 @@
+/* Template: page.php (.template-content) */
+
+.template-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: var(--wide-max-width);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.template-content-title {
+    color: var(--color-primary-50);
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+@media (min-width: 640px) {
+    .template-content-title {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
